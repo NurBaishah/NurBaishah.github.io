@@ -70,9 +70,12 @@
 # General Styling & Shared Classes
 --------------------------------------------------------------*/
 body {
-  color: var(--default-color);
-  background-color: var(--background-color);
-  font-family: var(--default-font);
+    /* Linear gradient from white to light gray */
+    background: linear-gradient(180deg, #ffffff 0%, #f0f0f0 100%);
+    /* Optional: make sure it fills the full page */
+    min-height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif; /* or your existing font */
 }
 
 a {
