@@ -730,7 +730,8 @@ section,
 # About Section
 --------------------------------------------------------------*/
 .about .container {
-  background-color: var(--surface-color);
+  /* Gradient background from white to light gray */
+  background: linear-gradient(135deg, #ffffff, #d3d3d3);
   box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
   padding: 30px;
 }
