@@ -1623,6 +1623,28 @@ section,
   font-size: 20px;
   margin-right: 8px;
   color: var(--accent-color);
+
+  .skills-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.skill-tag {
+  background-color: #4B6CB7; /* change color as needed */
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: default;
+  transition: transform 0.2s;
+}
+
+.skill-tag:hover {
+  transform: scale(1.1);
+}
+
 }
 
 /*--------------------------------------------------------------
