@@ -1623,33 +1623,105 @@ section,
   font-size: 20px;
   margin-right: 8px;
   color: var(--accent-color);
-
-  .skills-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 10px;
-}
-
-.skill-tag {
-  background-color: #4B6CB7; /* change color as needed */
-  color: #fff;
-  padding: 6px 12px;
-  border-radius: 20px;
-  font-size: 14px;
-  cursor: default;
-  transition: transform 0.2s;
-}
-
-.skill-tag:hover {
-  transform: scale(1.1);
-}
-
 }
 
 /*--------------------------------------------------------------
 # Starter Section Section
 --------------------------------------------------------------*/
 .starter-section {
-  /* Add your styles here */
+/*--------------------------------------------------------------
+# About Section - Modernized
+--------------------------------------------------------------*/
+.about .container {
+  /* Gradient background from white to light gray */
+  background: linear-gradient(135deg, #ffffff, #e6e6e6);
+  border-radius: 20px;
+  padding: 40px 30px;
+  box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+.about .about-me h4 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-align: center;
+  position: relative;
+  color: var(--heading-color);
+}
+
+.about .about-me h4:after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 64px;
+  height: 3px;
+  background: var(--accent-color);
+  left: 0;
+  right: 0;
+  bottom: -10px;
+  margin: auto;
+}
+
+.about .about-me p {
+  font-size: 18px;
+  line-height: 1.8;
+  color: var(--default-color);
+  text-align: justify;
+  margin-bottom: 30px;
+}
+
+/* Skills Section - Replace old progress bars */
+.about .skills-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.skill-tag {
+  background: var(--accent-color);
+  color: var(--contrast-color);
+  font-size: 14px;
+  padding: 8px 16px;
+  border-radius: 50px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.skill-tag:hover {
+  transform: scale(1.1);
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Remove old blue progress bars */
+.about .progress,
+.about .progress-bar-wrap,
+.about .progress-bar {
+  display: none !important;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .about .container {
+    padding: 30px 20px;
+  }
+
+  .about .about-me h4 {
+    font-size: 24px;
+  }
+
+  .about .about-me p {
+    font-size: 16px;
+  }
+
+  .skill-tag {
+    font-size: 13px;
+    padding: 6px 12px;
+  }
+}
+
 }
