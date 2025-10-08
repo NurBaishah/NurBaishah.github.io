@@ -1918,17 +1918,16 @@ body {
     /* ... other styles ... */
 }
 
-/* Styling for the Research Interest GIF (TIGHTER SPACING) */
+/* Styling for the Research Interest GIF (TIGHTEST SPACING) */
 .research-gif-container {
     text-align: center; /* Keep it centered */
-    /* Reduced margin-top (10px) to pull it closer to the title
-       Reduced margin-bottom (10px) to pull the text closer to the GIF */
-    margin: 10px auto 10px; 
+    /* Drastically reduced margin-top to pull it closer to the title */
+    margin: 0 auto 5px; 
     width: 100%;
 }
 
 .research-gif-container .research-gif {
-    max-width: 60px; /* Kept at 60px as agreed */
+    max-width: 60px; 
     height: auto;
     border-radius: 0; 
     border: none; 
@@ -1937,8 +1936,13 @@ body {
     display: inline-block; 
 }
 
-/* Ensure the text content below the GIF is also adjusted */
+/* We also need to remove any extra margin/padding from the elements surrounding the GIF */
+.about-content-frame .section-title {
+    margin-bottom: 5px !important; /* Force title bottom closer to the GIF */
+}
+
+/* Ensure the text content below the GIF is also pulled closer */
 .research-text-content {
     text-align: justify;
-    margin-top: 10px; /* Reduced gap between GIF and text */
+    margin-top: 5px; /* Reduced gap between GIF and text */
 }
