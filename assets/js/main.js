@@ -249,19 +249,3 @@
   document.addEventListener('scroll', navmenuScrollspy);
 
 })();
-/* --- Forced Re-initialization Fix for Portfolio Layout --- */
-document.addEventListener('DOMContentLoaded', () => {
-  // Re-initialize Isotope layout for My Works
-  const portfolioContainer = document.querySelector('.isotope-container');
-  if (portfolioContainer) {
-    new Isotope(portfolioContainer, {
-      itemSelector: '.portfolio-item',
-      layoutMode: 'masonry'
-    });
-  }
-
-  // Ensure Glightbox is initialized correctly for detail/video links
-  const glightbox = GLightbox({
-    selector: '.glightbox'
-  });
-});
