@@ -2294,26 +2294,25 @@ body {
     justify-content: center; 
     align-items: flex-start; 
 }
+/* --- CRITICAL FIX: UNCLIPPING THE PAGE HEIGHT --- */
 
-/* --- CRITICAL FIX: FORCING SCROLL AND UNCLIPPING CONTENT --- */
-
-html, body {
-    /* 1. Ensure the browser allows content to dictate height */
-    overflow-y: scroll !important;
-    min-height: 100vh !important;
-    height: auto !important; /* Prevents height from being fixed at 100% of viewport */
+/* 1. Target the main page body to ensure scrolling is enabled */
+body, html {
+    overflow-y: scroll !important; /* Force vertical scrollbar */
+    height: auto !important; /* Prevents height from being locked */
 }
 
-/* 2. Target the main content wrapper and disable clipping */
+/* 2. Target the main content wrapper (<main>) to remove clipping */
 main.main {
-    overflow: visible !important; /* This is the most likely culprit for clipping */
-    min-height: 1px !important; /* Forces the main content area to render */
-    padding-bottom: 100px !important; /* Ensures space below your last project */
+    overflow: visible !important; /* DISABLES CLIPPING */
+    padding-bottom: 200px !important; /* Adds extra padding to ensure content is visible below the viewport */
+    min-height: 1px !important; 
+    height: auto !important; 
 }
 
-/* 3. Aggressive clear on the portfolio section (to prevent subsequent sections from floating up) */
+/* 3. Re-apply the structural fix to the portfolio section */
 #portfolio {
-    clear: both !important;
+    clear: both !important; /* Ensures Testimonials/Contact start after My Works */
     padding-bottom: 100px !important;
-    overflow: visible !important;
+    overflow: visible !important; /* Disables clipping on the specific section */
 }
