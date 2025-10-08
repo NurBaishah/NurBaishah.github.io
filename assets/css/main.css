@@ -2011,3 +2011,113 @@ body {
     bottom: 0;
     left: 0;
 }
+/* --- Awards Section Styling --- */
+
+#awards .section-title {
+    margin-bottom: 40px; /* Space below the main title */
+}
+
+.award-item {
+    padding: 25px;
+    margin-bottom: 25px; /* Space between award boxes */
+    border-radius: 10px;
+    text-align: center;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Animation */
+    height: 100%; /* Ensure boxes are same height in a row */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Gradient Blue Award Box */
+.gradient-blue-award-box {
+    background: linear-gradient(to bottom right, #f4f8ff, #e9efff);
+    box-shadow: 0 8px 20px rgba(0, 0, 100, 0.15); /* Stronger shadow */
+}
+
+/* Hover Animation */
+.award-item:hover {
+    transform: translateY(-5px) scale(1.02); /* Lifts and slightly enlarges */
+    box-shadow: 0 12px 25px rgba(0, 0, 100, 0.25); /* Stronger shadow on hover */
+}
+
+.award-header {
+    margin-bottom: 15px;
+}
+
+.award-img {
+    width: 100px; /* Adjust size of award image */
+    height: 100px; /* Make it square */
+    object-fit: contain; /* Ensures image fits without cropping */
+    margin-bottom: 15px;
+    border-radius: 8px; /* Slightly rounded corners for images */
+    border: 2px solid rgba(var(--accent-color-rgb), 0.2); /* Subtle border */
+}
+
+.award-title {
+    font-size: 1.35em;
+    font-weight: 700;
+    color: var(--default-color); /* Matches text color */
+    margin-bottom: 5px;
+    line-height: 1.3;
+}
+
+.award-title small {
+    display: block; /* Puts the date on its own line */
+    font-size: 0.8em;
+    font-weight: 400;
+    color: #666;
+    margin-top: 3px;
+}
+
+.award-placement {
+    display: block;
+    font-size: 1em;
+    font-weight: 600;
+    color: var(--accent-color); /* Blue color for placement */
+    margin-top: 5px;
+}
+
+.award-details {
+    text-align: left;
+    margin-top: 15px;
+}
+
+.award-details ul {
+    list-style: none; /* Remove default bullet points */
+    padding: 0;
+    margin: 0;
+}
+
+.award-details ul li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 8px;
+    font-size: 0.95em;
+    color: #555;
+    line-height: 1.4;
+}
+
+.award-details ul li::before {
+    content: "•"; /* Custom bullet point */
+    position: absolute;
+    left: 0;
+    color: var(--accent-color); /* Blue bullet */
+    font-weight: bold;
+    font-size: 1.1em;
+    line-height: 1.4;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .award-item {
+        padding: 20px;
+    }
+    .award-title {
+        font-size: 1.2em;
+    }
+    .award-img {
+        width: 80px;
+        height: 80px;
+    }
+}
