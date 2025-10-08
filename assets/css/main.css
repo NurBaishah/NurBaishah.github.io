@@ -2194,3 +2194,14 @@ body {
         margin: 0 10px;
     }
 }
+/* --- Centering Titles and Roles within the Timeline Boxes --- */
+
+/* Centers all text content inside the timeline box */
+.timeline-item {
+    text-align: center !important; 
+}
+
+/* Re-aligns the detailed description text to the left for better readability */
+.timeline-details {
+    text-align: left !important;
+}
