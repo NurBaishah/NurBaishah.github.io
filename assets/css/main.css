@@ -2221,3 +2221,19 @@ body {
         margin: 0 10px;
     }
 }
+
+/*--------------------------------------------------------------
+# Portfolio Section (My Works - Custom Sizing/Centering)
+--------------------------------------------------------------*/
+.portfolio .portfolio-item .portfolio-info { padding-top: 15px; padding-bottom: 15px; } /* Override default padding */
+.portfolio-item { display: flex; flex-direction: column; height: 100%; } /* Enables column layout for symmetry */
+.portfolio-item img { height: 180px; object-fit: cover; width: 100%; line-height: 0; } /* Forces image height for symmetry */
+.portfolio-item .portfolio-info { flex-grow: 1; padding-top: 15px; } /* Forces text box to fill remaining height */
+
+/* Fix for centering items when filtering (My Works) */
+.isotope-container { display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start; }
+.isotope-item { margin-left: auto; margin-right: auto; }
+.portfolio-item .portfolio-info { opacity: 0; position: absolute; left: 0; right: 0; top: 0; bottom: 0; z-index: 2; background: rgba(0, 0, 0, 0.7); padding: 10px 15px; transition: all 0.3s ease-in-out; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+.portfolio-item:hover .portfolio-info { opacity: 1; }
+.portfolio-item img { width: 100%; height: auto; display: block; line-height: 0; }
+.portfolio-item .portfolio-info .preview-link, .portfolio-item .portfolio-info .details-link { position: relative !important; right: auto !important; top: auto !important; margin: 5px; }
