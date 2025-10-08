@@ -1642,4 +1642,71 @@ section,
   margin: 0 auto;         /* centers the timeline horizontally */
   padding-left: 40px;
 }
+/* General styling for the new section to place it correctly */
+.skills-box-container {
+    margin-top: 30px; /* Space below your contact info */
+    width: 100%;
+    max-width: 350px; /* Adjust this to match the width of your left column */
+}
 
+.skill-group {
+    margin-bottom: 20px;
+}
+
+.skill-group h3 {
+    font-size: 1.1em;
+    border-bottom: 2px solid #333; /* A small separator */
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+
+/* Styles for the moving box itself */
+.moving-text-box {
+    overflow: hidden; /* This hides the text when it moves outside the box */
+    white-space: nowrap; /* Prevents the text from wrapping to the next line */
+    background-color: #f0f0f0; /* Light background for the box */
+    padding: 8px 0;
+    border-radius: 4px;
+}
+
+.moving-text-box span {
+    /* Apply the animation */
+    display: inline-block;
+    padding-left: 100%; /* Start the text completely off-screen to the right */
+    animation: scroll-left 40s linear infinite; /* 40s is the duration, adjust for speed */
+}
+
+/* Define the scrolling animation */
+@keyframes scroll-left {
+    0% {
+        transform: translateX(0); /* Start position */
+    }
+    100% {
+        transform: translateX(-100%); /* End position (moves the text 100% of its own width to the left) */
+    }
+}
+
+/* A reversed scroll for variation */
+.reverse-scroll span {
+    animation: scroll-right 50s linear infinite; /* Longer duration for a different speed */
+}
+
+@keyframes scroll-right {
+    0% {
+        transform: translateX(-100%); /* Start off-screen to the left */
+    }
+    100% {
+        transform: translateX(0); /* End position back to the right */
+    }
+}
+
+/* Simple list for Languages */
+.skill-group ul {
+    list-style: none;
+    padding-left: 0;
+    font-size: 0.95em;
+}
+
+.skill-group ul li {
+    margin-bottom: 5px;
+}
