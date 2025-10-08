@@ -2293,3 +2293,23 @@ body {
     justify-content: center !important; 
     align-items: flex-start !important; 
 }
+/* --- FIX: Display Links at the Bottom of the Image --- */
+
+/* Ensures the icon links (both preview and details) are positioned at the bottom right corner */
+.portfolio .portfolio-item .portfolio-info .preview-link,
+.portfolio .portfolio-item .portfolio-info .details-link {
+    position: absolute; /* Use absolute positioning for control */
+    right: 14px; /* Move away from the right edge */
+    bottom: 14px; /* Position above the bottom of the image */
+    font-size: 28px;
+    color: white; 
+    z-index: 5;
+    background: #000; /* Subtle dark background for icon to stand out */
+    padding: 2px 5px;
+    border-radius: 50%;
+}
+
+/* Adjust the position of the second link (the details link) */
+.portfolio .portfolio-item .portfolio-info .details-link {
+    right: 50px; /* Moves the detail link next to the play link */
+}
