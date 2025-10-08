@@ -2293,7 +2293,7 @@ body {
     justify-content: center !important; 
     align-items: flex-start !important; 
 }
-/* --- FIX: Display Links at the Bottom of the Image --- */
+/* --- FIX: Display Links at the Bottom of the Imag --- */
 
 /* Ensures the icon links (both preview and details) are positioned at the bottom right corner */
 .portfolio .portfolio-item .portfolio-info .preview-link,
