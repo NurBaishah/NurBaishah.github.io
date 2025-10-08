@@ -2221,41 +2221,74 @@ body {
         margin: 0 10px;
     }
 }
-/* --- Final Functional Fix for Portfolio Visibility and Layout --- */
+/*--------------------------------------------------------------
+# Portfolio Section (My Works - FINAL FUNCTIONAL HOVER)
+--------------------------------------------------------------*/
 
-/* 1. Ensure all item containers are visible and functional */
+/* 1. Ensure all item containers behave uniformly and align correctly */
 .portfolio .portfolio-item {
-    display: flex !important; /* Force flex display */
-    visibility: visible !important; /* CRITICAL: Force visibility */
-    opacity: 1 !important; /* CRITICAL: Force opacity to 1 */
-    
-    /* Standard DevFolio structure for alignment */
+    /* Critical for vertical symmetry: forces items to stretch to the same height */
+    display: flex; 
     flex-direction: column;
-    height: 100%;
+    height: 100%; 
     position: relative; 
     z-index: 1;
+    overflow: hidden; /* This is the native DevFolio setting */
 }
 
-/* 2. Restore Image and Info Block Styling */
+/* 2. Fix the image preview aspect ratio and alignment */
 .portfolio-item img {
-    height: 180px;
+    /* Force a fixed height for all thumbnails (Symmetry fix) */
+    height: 180px; 
     object-fit: cover; 
     width: 100%; 
     display: block;
 }
 
+/* 3. The Hover Overlay (portfolio-info) - THIS IS THE COOL EFFECT */
 .portfolio-item .portfolio-info {
-    /* Ensures the visible text container is present and aligned */
-    position: relative !important;
-    opacity: 1 !important;
-    background: none !important;
-    z-index: 1;
-    flex-grow: 1;
-    padding-top: 15px;
-    text-align: left;
+    /* Positioned to cover the image area */
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 3;
+    
+    /* CRITICAL: Starts invisible and transparent */
+    opacity: 0;
+    transition: all ease-in-out 0.3s;
+    background: rgba(0, 120, 255, 0.8); /* Blue overlay */
+    padding: 15px; 
+    
+    /* Center icons and title within the hover area */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
-/* 3. Re-enable the Isotope Container for Centering */
+/* 4. HOVER ACTION: Makes the blue overlay appear */
+.portfolio-item:hover .portfolio-info {
+    opacity: 1;
+}
+
+/* 5. Styling the text that is inside the hover overlay */
+.portfolio .portfolio-item .portfolio-info h4 {
+    color: white; /* Title white on blue hover */
+    padding-right: 0 !important;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.portfolio .portfolio-item .portfolio-info p {
+    color: rgba(255, 255, 255, 0.9); /* Summary white on blue hover */
+    padding-right: 0 !important;
+    margin-bottom: 0;
+}
+
+/* 6. Centering fix for the grid */
 .isotope-container { 
     display: flex !important; 
     flex-wrap: wrap !important; 
