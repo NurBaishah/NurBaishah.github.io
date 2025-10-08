@@ -2293,14 +2293,3 @@ body {
     justify-content: center !important; 
     align-items: flex-start !important; 
 }
-.portfolio .portfolio-item .details-link {
-    /* Use a standard pointer and position absolutely outside the portfolio-info block */
-    position: absolute !important;
-    z-index: 9999 !important; /* Bring to front */
-    top: 50% !important; 
-    right: 14px !important; 
-    
-    /* Ensure the link is functional by not relying on Glightbox */
-    cursor: pointer !important;
-    pointer-events: auto !important;
-}
