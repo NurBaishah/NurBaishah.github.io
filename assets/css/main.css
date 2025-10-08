@@ -1921,19 +1921,15 @@ body {
 /* Styling for the Research Interest GIF */
 .research-gif-container {
     text-align: center; /* Center the GIF horizontally */
-    margin: 20px auto 30px; /* Add vertical spacing */
+    margin: 15px auto 25px; /* Adjust spacing */
     width: 100%;
 }
 
 .research-gif-container .research-gif {
-    /* Set a max width to prevent it from dominating the entire frame */
-    max-width: 150px; 
+    /* Set max width to make it VERY SMALL (e.g., 80px) */
+    max-width: 80px; 
     height: auto;
-    border-radius: 8px; /* Slight rounding for integration */
-}
-
-/* Ensure the text content below the GIF is well-spaced */
-.research-text-content {
-    text-align: justify; /* Optional: Makes the text look neat */
-    margin-top: 20px;
+    border-radius: 6px; 
+    /* Add a small shadow to make the tiny element pop slightly */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
 }
