@@ -1591,13 +1591,25 @@ section,
 # About Section - Modernized
 --------------------------------------------------------------*/
 .about .container {
-  /* Gradient background from white to light gray */
-  background: linear-gradient(135deg, #ffffff, #e6e6e6);
-  border-radius: 20px;
-  padding: 40px 30px;
-  box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.08);
-  position: relative;
-  overflow: hidden;
+    background: linear-gradient(to bottom right, #f8f8ff, #e6e6ff); /* Very light, cool blue to white gradient */
+    
+    /* Shadow: Obvious drop shadow for a floating, 3D effect */
+    box-shadow: 0 10px 30px rgba(0, 0, 100, 0.25); /* Larger, softer shadow for a "lifted" look */
+    
+    /* Internal spacing and structure */
+    padding: 30px; /* Space inside the frame */
+    margin: 30px auto; /* Center the frame and add space around it */
+    border-radius: 12px; /* Softly rounded corners */
+    
+    /* Ensure the content is displayed side-by-side (assuming a flex or grid layout) */
+    display: flex;
+    gap: 40px; /* Space between the left column and the 'About me' text */
+}
+
+/* You may need to ensure the main page background is white or light gray 
+   for the drop shadow to be clearly visible */
+body {
+    background-color: #f0f0f0; 
 }
 
 .about .about-me h4 {
