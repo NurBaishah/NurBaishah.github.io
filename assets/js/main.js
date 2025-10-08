@@ -272,3 +272,27 @@
   document.addEventListener('scroll', navmenuScrollspy);
 
 })();
+document.querySelectorAll('.open-html-modal').forEach(link => {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        // Dynamically create a Glightbox instance to load the external page
+        const htmlPageUrl = this.getAttribute('href');
+
+        const instance = GLightbox({
+            selector: false, // Ensures it doesn't conflict with the main selector
+            type: 'url',
+            // Set the size to be large and responsive for a details page
+            width: '90vw', 
+            height: '90vh',
+            elements: [{
+                'href': htmlPageUrl,
+                'type': 'url'
+            }]
+        });
+
+        // Open the modal
+        instance.open();
+    });
+});
