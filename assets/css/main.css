@@ -2015,32 +2015,36 @@ body {
 
 /* Remove default margin on the section title to pull it closer to the frame */
 #awards .section-title {
-    margin-bottom: 20px !important; /* Reduced space below the main title */
+    /* Aggressively reduce bottom margin to pull the title closer to the frame */
+    margin-bottom: 0px !important; 
+    padding-bottom: 20px !important; /* Keep some padding inside the section container */
 }
+
 
 /* --- CLASSIC WOODEN PICTURE FRAME STYLING (FULL WIDTH) --- */
 .classic-wooden-frame-full {
-    margin: 0 auto; /* No top/bottom margin, horizontal auto for centering if max-width is set */
-    padding: 30px; /* Internal padding between frame edge and awards */
-    width: 100vw; /* Make it full viewport width */
-    max-width: 100%; /* Ensure it doesn't exceed 100% of its parent's width */
-    position: relative; /* Needed for width: 100vw to work correctly within some layouts */
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw; /* This pushes it out to the edges */
+    /* Remove the 'edge-to-edge' settings */
+    position: static; 
+    left: auto;
+    right: auto;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%; /* KEY CHANGE: Sets a maximum width relative to the screen */
+    max-width: 1200px; /* Optional: Stops it from getting too wide on huge screens */
 
-    /* Using a fallback solid border in case the image doesn't load */
-    border: 30px solid #5C4033; 
+    padding: 30px; 
     
-    /* === KEY TO THE EFFECT: CSS BORDER IMAGE === */
-    /* Replace 'wood_texture.png' with your actual path/filename */
+    /* === KEY TO NEW EFFECT: CERTIFICATE BACKGROUND === */
+    /* Gradient yellow/brownish to mimic aged paper */
+    background: linear-gradient(to bottom right, #fdf8e6, #fff7d9) !important;
+    
+    /* Fallback and Border Image */
+    border: 30px solid #5C4033; 
     border-image: url('assets/img/wood_texture.png') 30 / 30px / 0 round; 
     
-    background-color: #fafafa; /* Background inside the frame */
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-    border-radius: 0; /* Remove border-radius for edge-to-edge frame */
-    padding-top: 40px; /* Add more padding top/bottom inside the frame */
+    border-radius: 0; 
+    padding-top: 40px; 
     padding-bottom: 40px;
 }
 
