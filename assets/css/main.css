@@ -1921,7 +1921,7 @@ body {
 /* Styling for the Research Interest GIF */
 .research-gif-container {
     text-align: center; /* Center the GIF horizontally */
-    margin: 10px auto 25px; /* Adjust spacing */
+    margin: 15px auto 25px; /* Adjust spacing */
     width: 100%;
 }
 
