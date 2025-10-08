@@ -2225,68 +2225,69 @@ body {
 # Portfolio Section (My Works - FINAL FUNCTIONAL FIX)
 --------------------------------------------------------------*/
 
-/* Ensures all item containers behave uniformly */
+/* 1. Ensures all item containers behave uniformly and align correctly */
 .portfolio .portfolio-item {
     /* Critical for vertical symmetry: forces items to stretch to the same height */
     display: flex; 
     flex-direction: column;
     height: 100%; 
-    position: relative; /* Essential for containing the hover effect */
+    position: relative; 
+    z-index: 1; /* Ensures this container is above the broken background elements */
 }
 
 /* Fix the image preview aspect ratio and alignment */
 .portfolio-item img {
     /* Force a fixed height for all thumbnails */
     height: 180px; 
-    /* Crucial: Scales image to cover the entire forced area without distortion */
     object-fit: cover; 
     width: 100%; 
-    line-height: 0; 
+    display: block;
 }
 
-/* Ensure the text box starts below the image and fills the remaining space */
+/* 2. Style for the VISIBLE TEXT BLOCK (Below the image) */
+.portfolio-item .portfolio-info p:not(.description) {
+    /* Target only the small summary paragraph */
+    color: #444 !important; /* Make summary text clearly visible */
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+/* 3. The Hover Overlay (Icons) - Hides descriptive text during hover */
 .portfolio-item .portfolio-info {
-    /* Keeps the hover overlay at the bottom where it belongs */
-    opacity: 0; 
-    position: absolute; 
+    /* Standard DevFolio styling for the overlay container */
+    position: absolute;
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: 3; /* Standard DevFolio Z-index */
+    top: 0;
+    z-index: 3;
+    opacity: 0;
     transition: all ease-in-out 0.3s;
-    background: color-mix(in srgb, var(--background-color), transparent 10%); /* Standard overlay */
-    padding: 15px; 
+    background: rgba(0, 0, 0, 0.7); /* Dark overlay */
     
-    /* ADDED: Forces the visible description area to take space */
-    position: relative; 
-    opacity: 1; 
-    background: none; 
-    z-index: 1; /* Pushes the text layer down */
-    
-    /* Ensure the text below the hover area takes up space */
-    height: auto; 
-    flex-grow: 1; 
-    
-    /* Resetting unnecessary aggressive centering from previous steps */
-    display: block !important; 
-    text-align: left !important;
+    /* Center icons and text within the hover area */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
-/* Restoring the hover effect styling */
+/* Make the hover overlay visible */
 .portfolio-item:hover .portfolio-info {
     opacity: 1;
-    bottom: 20px;
-    background: color-mix(in srgb, var(--background-color), transparent 10%) !important;
-    padding: 15px !important;
-    
-    /* Making the icons reappear correctly */
-    display: flex !important;
-    flex-direction: row !important;
-    justify-content: center !important;
-    align-items: center !important;
+    bottom: 0; /* Ensures the overlay covers the whole image area */
 }
 
-/* --- Final Centering Fix for Grid --- */
+/* 4. Fix for the text scattering below the image: */
+.portfolio-item .portfolio-info h4,
+.portfolio-item .portfolio-info p {
+    /* Reset padding/margins that caused scattering in previous attempts */
+    padding-right: 0 !important;
+    text-align: center !important;
+}
+
+/* 5. Final Centering Fix for the Grid */
 .isotope-container { 
     display: flex; 
     flex-wrap: wrap; 
