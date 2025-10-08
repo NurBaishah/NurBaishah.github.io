@@ -2277,16 +2277,13 @@ body {
     opacity: 1; /* Overlay becomes visible */
 }
 
-/* 6. Styling the text that is inside the hover overlay */
-.portfolio .portfolio-item .portfolio-info h4 {
-    color: white !important; /* Text is WHITE on blue hover */
-    padding-right: 0 !important;
-    font-weight: 700;
-}
-
-.portfolio .portfolio-item .portfolio-info p {
-    color: white !important; /* Text is WHITE on blue hover */
-    padding-right: 0 !important;
+/* 4. Ensure headings and paragraphs inside the visible block are BLACK */
+.portfolio-item .portfolio-info h4, 
+.portfolio-item .portfolio-info p {
+    color: var(--heading-color, #0a090f) !important; /* Force Black Title/Text */
+    text-align: left !important;
+    padding: 0 !important;
+    margin-bottom: 5px !important;
 }
 
 /* 7. Final Centering Fix for the grid (Keep this for organization) */
