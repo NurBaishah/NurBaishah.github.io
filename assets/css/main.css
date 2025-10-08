@@ -2294,25 +2294,3 @@ body {
     justify-content: center; 
     align-items: flex-start; 
 }
-/* --- CRITICAL FIX: UNCLIPPING THE PAGE HEIGHT --- */
-
-/* 1. Target the main page body to ensure scrolling is enabled */
-body, html {
-    overflow-y: scroll !important; /* Force vertical scrollbar */
-    height: auto !important; /* Prevents height from being locked */
-}
-
-/* 2. Target the main content wrapper (<main>) to remove clipping */
-main.main {
-    overflow: visible !important; /* DISABLES CLIPPING */
-    padding-bottom: 200px !important; /* Adds extra padding to ensure content is visible below the viewport */
-    min-height: 1px !important; 
-    height: auto !important; 
-}
-
-/* 3. Re-apply the structural fix to the portfolio section */
-#portfolio {
-    clear: both !important; /* Ensures Testimonials/Contact start after My Works */
-    padding-bottom: 100px !important;
-    overflow: visible !important; /* Disables clipping on the specific section */
-}
