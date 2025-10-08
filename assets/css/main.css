@@ -1762,16 +1762,18 @@ body {
 /* ANIMATED PROFILE PICTURE BORDER (BIG & OBVIOUS) */
 /* ========================================= */
 
+/* ========================================= */
+/* ANIMATED PROFILE PICTURE BORDER (GUARANTEED VISIBLE) */
+/* ========================================= */
+
 .profile-picture-container {
+    /* Retain size, shape, and positioning */
     position: relative; 
-    width: 180px; /* Slightly larger image container */
+    width: 180px; 
     height: 180px; 
     border-radius: 50%;
     overflow: hidden; 
-    margin: 0; 
     z-index: 1; 
-    /* Add a subtle initial shadow to the container itself for depth */
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
 }
 
 .profile-picture-container img {
@@ -1780,20 +1782,23 @@ body {
     object-fit: cover;
     border-radius: 50%; 
     border: 5px solid white; /* Thicker white inner border for contrast */
+    position: relative; /* IMPORTANT: Keeps the image above the 'after' element */
+    z-index: 2; /* Ensures the image is on top */
 }
 
-/* --- The BIG, OBVIOUS, Moving Gradient Border Effect (using ::before) --- */
-.profile-picture-container::before {
+/* --- THE MOVING GRADIENT LAYER (::after) --- */
+.profile-picture-container::after {
     content: '';
     position: absolute;
-    top: -15px; /* SIGNIFICANTLY INCREASED OFFSET for a wider border area */
+    /* Size the ::after element to cover the image plus border space */
+    top: -15px;
     left: -15px;
     right: -15px;
     bottom: -15px;
     border-radius: 50%;
-    border: 15px solid transparent; /* MUCH THICKER TRANSPARENT BORDER */
-    
-    /* More vibrant and contrasting color gradient */
+    z-index: 0; /* Place behind the image (z-index: 2) */
+
+    /* Apply the BIG, VIBRANT gradient */
     background: linear-gradient(
         45deg, 
         #ff0077, /* Vibrant Pink */
@@ -1801,27 +1806,19 @@ body {
         #7f00ff, /* Deep Purple */
         #ffcc00, /* Energetic Gold */
         #00ffaa  /* Emerald Green */
-    ) border-box; 
+    );
     
-    /* Masking remains the same for the hollow effect */
-    -webkit-mask: 
-      linear-gradient(#fff 0 0) content-box, 
-      linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-            mask-composite: exclude;
-    z-index: -1; 
-
-    /* Animation settings - adjusted for more dynamic movement */
-    background-size: 300% 300%; /* Even larger background size for more apparent movement */
+    /* Animation settings */
+    background-size: 300% 300%; 
     animation: 
-        rotateBorder 4s linear infinite, /* Slightly faster rotation */
-        colorShift 8s linear infinite alternate; /* Slightly faster color shift */
+        rotateBorder 4s linear infinite, 
+        colorShift 8s linear infinite alternate; 
     
-    /* Add a subtle glow/shadow to the animated border itself */
-    filter: drop-shadow(0 0 10px rgba(0, 120, 255, 0.7));
+    /* Add a strong glow/shadow */
+    filter: drop-shadow(0 0 10px rgba(0, 120, 255, 1));
 }
 
-/* KEYFRAMES for the animation (remain the same, but values adjusted above) */
+/* KEYFRAMES for the animation (remain the same) */
 @keyframes rotateBorder {
     0% { background-position: 0% 50%; }
     100% { background-position: 100% 50%; }
@@ -1831,3 +1828,10 @@ body {
     0% { filter: hue-rotate(0deg); }
     100% { filter: hue-rotate(360deg); }
 }
+
+/* * IMPORTANT FIX: To make the border visible, we need to ensure the 
+* image itself (which is circular) effectively "cuts a hole" in the 
+* larger background/::after element.
+* By ensuring the image is on top (z-index: 2) and has a white border, 
+* the gradient will be forced into the visible ring.
+*/
