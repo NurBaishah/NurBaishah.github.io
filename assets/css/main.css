@@ -735,47 +735,132 @@ section,
   box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
   padding: 30px;
 }
-
-.about .skills-content h5 {
-  font-size: 18px;
-  font-weight: 700;
-  margin: 30px 0 15px 0;
+/* Skills Section - Remove old progress bars */
+.about .skills-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 20px;
 }
 
-.about .progress {
-  height: 36px;
-  display: block;
-  background: none;
-  border-radius: 0;
-  margin-top: 15px;
+.skill-tag {
+  background: var(--accent-color);
+  color: var(--contrast-color);
+  font-size: 14px;
+  padding: 8px 16px;
+  border-radius: 50px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: default;
 }
 
-.about .progress .skill {
-  color: var(--default-color);
-  padding: 0;
-  margin: 0 0 6px 0;
-  text-transform: uppercase;
-  display: block;
-  font-weight: 600;
-  font-family: var(--heading-font);
+.skill-tag:hover {
+  transform: scale(1.1);
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
 }
 
-.about .progress .skill .val {
-  float: right;
-  font-style: normal;
-}
-
-.about .progress-bar-wrap {
-  background: color-mix(in srgb, var(--default-color), transparent 90%);
-  height: 10px;
-}
-
+/* Remove old blue progress bars */
+.about .progress,
+.about .progress-bar-wrap,
 .about .progress-bar {
-  width: 1px;
-  height: 10px;
-  transition: 0.9s;
-  background-color: var(--accent-color);
+  display: none !important;
 }
+
+/*--------------------------------------------------------------
+# Dynamic Skills Marquee (NEW STYLES)
+--------------------------------------------------------------*/
+
+/* Skills Showcase Container - Adapts to the narrow left column */
+.skills-showcase {
+    padding: 0;
+    margin: 0;
+    max-width: 100%;
+    background: transparent;
+    box-shadow: none;
+}
+
+/* Category Title styling - Matches existing sidebar h5 styling */
+.skills-showcase .category-title {
+    font-size: 1rem;
+    font-weight: 700;
+    margin: 15px 0 5px 0;
+    padding: 0;
+    color: var(--heading-color);
+}
+
+/* Marquee track setup */
+.marquee-container {
+    width: 100%;
+    overflow: hidden;
+    margin: 10px 0 20px 0;
+    white-space: nowrap; 
+    padding: 5px 0;
+}
+
+.marquee-track {
+    display: inline-block;
+    animation-name: marquee-left;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    padding-right: 20px; 
+}
+
+/* Animation Keyframes */
+@keyframes marquee-left {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+}
+
+/* Skill Box Styling */
+.skill-box {
+    display: inline-block;
+    margin: 0 6px;
+    padding: 5px 10px;
+    border-radius: 15px; 
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: default;
+    background-color: var(--surface-color); 
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+/* Hover effect */
+.skill-box:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px color-mix(in srgb, var(--accent-color), transparent 70%); 
+}
+
+/* Color variations for better visual distinction */
+.programming {
+    color: var(--accent-color); /* Uses DevFolio Blue */
+    border: 1px solid var(--accent-color);
+}
+
+.tools {
+    color: var(--default-color); /* Uses Dark Grey/Default Text Color */
+    border: 1px solid color-mix(in srgb, var(--default-color), transparent 50%);
+}
+
+.languages {
+    color: #28a745; /* Green for clear distinction */
+    border: 1px solid #28a745;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .skills-showcase .category-title {
+        font-size: 0.9rem;
+    }
+    .skill-box {
+        padding: 4px 8px;
+        font-size: 0.65rem;
+        margin: 0 4px;
+    }
+}
+
 
 .about .about-me h4 {
   font-size: 28px;
