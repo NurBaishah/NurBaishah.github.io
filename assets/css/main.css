@@ -2225,72 +2225,44 @@ body {
 # Portfolio Section (My Works - FINAL FUNCTIONAL FIX)
 --------------------------------------------------------------*/
 
-/* 1. Ensures all item containers behave uniformly and align correctly */
+* --- Final Functional Fix for Portfolio Visibility and Layout --- */
+
+/* 1. Ensure all item containers are visible and functional */
 .portfolio .portfolio-item {
-    /* Critical for vertical symmetry: forces items to stretch to the same height */
-    display: flex; 
+    display: flex !important; /* Force flex display */
+    visibility: visible !important; /* CRITICAL: Force visibility */
+    opacity: 1 !important; /* CRITICAL: Force opacity to 1 */
+    
+    /* Standard DevFolio structure for alignment */
     flex-direction: column;
-    height: 100%; 
+    height: 100%;
     position: relative; 
-    z-index: 1; /* Ensures this container is above the broken background elements */
+    z-index: 1;
 }
 
-/* Fix the image preview aspect ratio and alignment */
+/* 2. Restore Image and Info Block Styling */
 .portfolio-item img {
-    /* Force a fixed height for all thumbnails */
-    height: 180px; 
+    height: 180px;
     object-fit: cover; 
     width: 100%; 
     display: block;
 }
 
-/* 2. Style for the VISIBLE TEXT BLOCK (Below the image) */
-.portfolio-item .portfolio-info p:not(.description) {
-    /* Target only the small summary paragraph */
-    color: #444 !important; /* Make summary text clearly visible */
-    font-size: 14px;
-    margin-bottom: 5px;
-}
-
-/* 3. The Hover Overlay (Icons) - Hides descriptive text during hover */
 .portfolio-item .portfolio-info {
-    /* Standard DevFolio styling for the overlay container */
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    top: 0;
-    z-index: 3;
-    opacity: 0;
-    transition: all ease-in-out 0.3s;
-    background: rgba(0, 0, 0, 0.7); /* Dark overlay */
-    
-    /* Center icons and text within the hover area */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+    /* Ensures the visible text container is present and aligned */
+    position: relative !important;
+    opacity: 1 !important;
+    background: none !important;
+    z-index: 1;
+    flex-grow: 1;
+    padding-top: 15px;
+    text-align: left;
 }
 
-/* Make the hover overlay visible */
-.portfolio-item:hover .portfolio-info {
-    opacity: 1;
-    bottom: 0; /* Ensures the overlay covers the whole image area */
-}
-
-/* 4. Fix for the text scattering below the image: */
-.portfolio-item .portfolio-info h4,
-.portfolio-item .portfolio-info p {
-    /* Reset padding/margins that caused scattering in previous attempts */
-    padding-right: 0 !important;
-    text-align: center !important;
-}
-
-/* 5. Final Centering Fix for the Grid */
+/* 3. Re-enable the Isotope Container for Centering */
 .isotope-container { 
-    display: flex; 
-    flex-wrap: wrap; 
-    justify-content: center; 
-    align-items: flex-start; 
+    display: flex !important; 
+    flex-wrap: wrap !important; 
+    justify-content: center !important; 
+    align-items: flex-start !important; 
 }
