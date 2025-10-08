@@ -2221,76 +2221,73 @@ body {
         margin: 0 10px;
     }
 }
-/*--------------------------------------------------------------
-# Portfolio Section (My Works - FINAL STABILITY FIX)
---------------------------------------------------------------*/
+/* --- Final Functional Fix for Portfolio Visibility and Hover --- */
 
 /* 1. Ensure all item containers behave uniformly and align correctly */
 .portfolio .portfolio-item {
-    /* Critical for vertical symmetry: forces items to stretch to the same height */
     display: flex; 
     flex-direction: column;
     height: 100%; 
     position: relative; 
     z-index: 1;
-    overflow: hidden; /* Standard DevFolio setting */
+    /* IMPORTANT: Restore the overflow setting for the hover effect to clip */
+    overflow: hidden; 
 }
 
-/* 2. Fix the image preview aspect ratio and alignment */
+/* 2. Set strict dimensions and object fitting for thumbnail images */
 .portfolio-item img {
-    /* Force a fixed height for all thumbnails (Symmetry fix) */
     height: 180px; 
-    object-fit: cover; 
-    width: 100%; 
+    width: 100%;
+    object-fit: cover;
     display: block;
 }
 
-/* 3. The Hover Overlay (portfolio-info) - THIS IS THE FIX */
+/* 3. Style for the VISIBLE TEXT BLOCK (Stays present regardless of hover) */
 .portfolio-item .portfolio-info {
-    /* Standard DevFolio: Positioned to cover the image */
+    /* Guarantees the text container is present and readable */
+    position: relative; 
+    opacity: 1 !important; /* Text is always visible */
+    background: none !important; /* No background on the text block */
+    z-index: 1;
+    flex-grow: 1;
+    padding: 15px; /* Use padding for spacing */
+    text-align: left;
+}
+
+/* 4. THE HOVER OVERLAY: This is the hidden block that appears on hover */
+.portfolio-item .portfolio-info:before {
+    content: "";
     position: absolute;
     left: 0;
     right: 0;
     top: 0;
     bottom: 0;
-    z-index: 3;
-    
-    /* CRITICAL: Starts invisible and transparent */
-    opacity: 0;
+    z-index: 5; /* Above the text (z-index 1) */
+    background: rgba(0, 120, 255, 0.7); /* Strong blue overlay */
+    opacity: 0; /* CRITICAL: Starts invisible */
     transition: all ease-in-out 0.3s;
-    background: rgba(0, 0, 0, 0.7); /* Dark overlay */
-    padding: 15px; 
-    
-    /* Ensure content aligns (icons/title) */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
 }
 
-/* 4. Make the hover overlay appear on mouse touch */
-.portfolio-item:hover .portfolio-info {
-    opacity: 1;
-    bottom: 0; /* Ensures full coverage */
+/* 5. HOVER ACTION: Makes the blue overlay appear */
+.portfolio-item:hover .portfolio-info:before {
+    opacity: 1; /* Overlay becomes visible */
 }
 
-/* 5. Styling the text that is inside the hover overlay */
-.portfolio .portfolio-item .portfolio-info h4 {
-    color: white; /* Title white on dark hover */
-    padding-right: 0 !important;
-    font-weight: 700;
+/* 6. HOVER ICONS: Makes the icons visible on hover */
+.portfolio-item .details-link,
+.portfolio-item .preview-link {
+    position: relative; 
+    z-index: 6; /* Icons above the overlay */
+    color: white !important; /* Icons must be white against the blue overlay */
+    opacity: 0; /* CRITICAL: Icons start invisible */
+    transition: opacity 0.3s ease-in-out;
+    margin: 5px;
+    top: -50px; /* Pull icons up to the center of the image area */
 }
 
-.portfolio .portfolio-item .portfolio-info p {
-    color: rgba(255, 255, 255, 0.8); /* Summary white on dark hover */
-    padding-right: 0 !important;
-}
-
-/* 6. Fix for centering items when filtering (My Works) */
-.isotope-container { 
-    display: flex !important; 
-    flex-wrap: wrap !important; 
-    justify-content: center !important; 
-    align-items: flex-start !important; 
+/* Make icons visible when hovering */
+.portfolio-item:hover .details-link,
+.portfolio-item:hover .preview-link {
+    opacity: 1; /* Icons appear */
+    transform: translateY(50px); /* Move them into center position */
 }
