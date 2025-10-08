@@ -1927,9 +1927,8 @@ body {
 
 .research-gif-container .research-gif {
     /* Set max width to make it VERY SMALL (e.g., 80px) */
-    max-width: 10px; 
+    max-width: 1px; 
     height: auto;
     border-radius: 6px; 
-    /* Add a small shadow to make the tiny element pop slightly */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+
 }
