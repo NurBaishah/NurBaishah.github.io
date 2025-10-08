@@ -1909,3 +1909,11 @@ body {
     0% { filter: hue-rotate(0deg); }
     100% { filter: hue-rotate(360deg); }
 }
+.about-content-frame {
+    background: linear-gradient(to bottom right, #f4f8ff, #e9efff); 
+    box-shadow: 0 10px 30px rgba(0, 0, 100, 0.25); 
+    padding: 30px; 
+    margin: 30px auto; 
+    border-radius: 12px;
+    /* ... other styles ... */
+}
