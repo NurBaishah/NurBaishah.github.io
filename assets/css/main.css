@@ -1642,13 +1642,10 @@ section,
   margin: 0 auto;         /* centers the timeline horizontally */
   padding-left: 40px;
 }
+/* Existing styles (keep these as they are) */
 .skills-box-container {
     margin-top: 30px;
-    /* Increase max-width to use more space */
-    max-width: 450px; 
-    /* The main image and contact section should also have a larger container 
-       to match this width, otherwise this change won't take full effect.
-       Assume the main container is now wider. */
+    max-width: 500px; 
 }
 
 .skill-group {
@@ -1660,62 +1657,74 @@ section,
     border-bottom: 2px solid #333;
     padding-bottom: 5px;
     margin-bottom: 10px;
+    color: #333; /* Darker text for headings */
 }
 
-/* Styles for the moving box itself */
 .moving-text-box {
     overflow: hidden;
     white-space: nowrap;
-    padding: 5px 0; /* Reduced vertical padding */
+    padding: 5px 0; 
+    border-radius: 5px; /* Slight roundness for the main box */
+    background-color: #f8f8f8; /* Very subtle background for the moving area */
 }
 
-/* Container for all the buttons - must be set to inline-block for scrolling */
 .skill-list-track {
     display: inline-block;
     white-space: nowrap;
-    /* Start position is far off-screen to the right to create a seamless loop */
-    padding-left: 100%; 
-    animation: scroll-left 15s linear infinite; /* FASTER ANIMATION: 15s */
+    animation: scroll-left 10s linear infinite; 
 }
 
-/* 2. COLORFUL, SEPARATE BUTTONS/BOXES */
 .skill-button {
-    /* Basic button styling */
     display: inline-block;
-    margin-right: 10px; /* Space between buttons */
+    margin-right: 10px;
     padding: 5px 12px;
     border-radius: 20px;
     font-size: 0.9em;
     font-weight: bold;
-    
-    /* Using CSS Variables for dynamic colors */
-    background-color: var(--color, #ccc); /* Uses the color set in HTML, defaults to gray */
-    color: white; /* White text for contrast */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s;
+    color: white; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15); /* Slightly stronger shadow */
+    transition: transform 0.2s ease-in-out; /* Smooth hover effect */
 }
 
-/* Define the faster scrolling animation */
+.skill-button:hover {
+    transform: translateY(-2px); /* Lift button on hover */
+}
+
+.skill-separator {
+    display: inline-block;
+    margin: 0 5px;
+    color: #999; /* Lighter color for separator */
+    font-weight: normal; /* Normal weight for separator */
+    font-size: 0.8em; /* Slightly smaller separator */
+}
+
+/* --- NEW GRADIENT COLOR LOGIC --- */
+
+/* Define base dark blue for the gradient */
+:root {
+    --base-blue: hsl(210, 80%, 30%); /* A nice deep, slightly desaturated blue */
+}
+
+/* Individual gradient steps */
+.skill-button.gradient-blue-1 { background-color: var(--base-blue); }
+.skill-button.gradient-blue-2 { background-color: hsl(210, 85%, 38%); } /* Lighter */
+.skill-button.gradient-blue-3 { background-color: hsl(210, 90%, 46%); } /* Even lighter */
+.skill-button.gradient-blue-4 { background-color: hsl(210, 95%, 54%); } /* Lighter still */
+.skill-button.gradient-blue-5 { background-color: hsl(210, 100%, 62%); } /* Lightest */
+/* You can add more gradient-blue-X classes if you have more than 5 distinct buttons */
+
+
+/* --- ANIMATION KEYFRAMES (Keep these as they are for seamless loop) --- */
 @keyframes scroll-left {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(-100%);
-    }
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
 }
 
-/* Reversed scroll - also made faster */
 .reverse-scroll .skill-list-track {
-    animation: scroll-right 20s linear infinite; /* Slightly slower reverse scroll */
+    animation: scroll-right 10s linear infinite;
 }
 
 @keyframes scroll-right {
-    0% {
-        /* Start position must be off-screen to the left */
-        transform: translateX(-100%); 
-    }
-    100% {
-        transform: translateX(0);
-    }
+    0% { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
 }
