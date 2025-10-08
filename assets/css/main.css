@@ -2221,73 +2221,44 @@ body {
         margin: 0 10px;
     }
 }
-/* --- Final Functional Fix for Portfolio Visibility and Hover --- */
+/* --- Final Functional Fix for Portfolio Visibility and Layout --- */
 
-/* 1. Ensure all item containers behave uniformly and align correctly */
+/* 1. Ensure all item containers are visible and functional */
 .portfolio .portfolio-item {
-    display: flex; 
+    display: flex !important; /* Force flex display */
+    visibility: visible !important; /* CRITICAL: Force visibility */
+    opacity: 1 !important; /* CRITICAL: Force opacity to 1 */
+    
+    /* Standard DevFolio structure for alignment */
     flex-direction: column;
-    height: 100%; 
+    height: 100%;
     position: relative; 
     z-index: 1;
-    /* IMPORTANT: Restore the overflow setting for the hover effect to clip */
-    overflow: hidden; 
 }
 
-/* 2. Set strict dimensions and object fitting for thumbnail images */
+/* 2. Restore Image and Info Block Styling */
 .portfolio-item img {
-    height: 180px; 
-    width: 100%;
-    object-fit: cover;
+    height: 180px;
+    object-fit: cover; 
+    width: 100%; 
     display: block;
 }
 
-/* 3. Style for the VISIBLE TEXT BLOCK (Stays present regardless of hover) */
 .portfolio-item .portfolio-info {
-    /* Guarantees the text container is present and readable */
-    position: relative; 
-    opacity: 1 !important; /* Text is always visible */
-    background: none !important; /* No background on the text block */
+    /* Ensures the visible text container is present and aligned */
+    position: relative !important;
+    opacity: 1 !important;
+    background: none !important;
     z-index: 1;
     flex-grow: 1;
-    padding: 15px; /* Use padding for spacing */
+    padding-top: 15px;
     text-align: left;
 }
 
-/* 4. THE HOVER OVERLAY: This is the hidden block that appears on hover */
-.portfolio-item .portfolio-info:before {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    z-index: 5; /* Above the text (z-index 1) */
-    background: rgba(0, 120, 255, 0.7); /* Strong blue overlay */
-    opacity: 0; /* CRITICAL: Starts invisible */
-    transition: all ease-in-out 0.3s;
-}
-
-/* 5. HOVER ACTION: Makes the blue overlay appear */
-.portfolio-item:hover .portfolio-info:before {
-    opacity: 1; /* Overlay becomes visible */
-}
-
-/* 6. HOVER ICONS: Makes the icons visible on hover */
-.portfolio-item .details-link,
-.portfolio-item .preview-link {
-    position: relative; 
-    z-index: 6; /* Icons above the overlay */
-    color: white !important; /* Icons must be white against the blue overlay */
-    opacity: 0; /* CRITICAL: Icons start invisible */
-    transition: opacity 0.3s ease-in-out;
-    margin: 5px;
-    top: -50px; /* Pull icons up to the center of the image area */
-}
-
-/* Make icons visible when hovering */
-.portfolio-item:hover .details-link,
-.portfolio-item:hover .preview-link {
-    opacity: 1; /* Icons appear */
-    transform: translateY(50px); /* Move them into center position */
+/* 3. Re-enable the Isotope Container for Centering */
+.isotope-container { 
+    display: flex !important; 
+    flex-wrap: wrap !important; 
+    justify-content: center !important; 
+    align-items: flex-start !important; 
 }
