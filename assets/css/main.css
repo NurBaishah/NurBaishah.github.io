@@ -1947,3 +1947,38 @@ body {
     text-align: justify;
     margin-top: 5px; /* Reduced gap between GIF and text */
 }
+
+/* Make Scholarship main title underlined blue */
+#scholarship .content h3 strong {
+    /* Assuming section-title h2 has this style */
+    position: relative;
+    padding-bottom: 8px; /* Adjust as needed */
+}
+
+#scholarship .content h3 strong::after {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 50px; /* Length of the underline */
+    height: 3px; /* Thickness of the underline */
+    background: var(--accent-color); /* Your theme's blue color */
+    bottom: 0;
+    left: 0;
+}
+
+/* Reduce vertical padding in each scholarship item */
+.faq-container .faq-item {
+    padding: 10px 20px !important; /* Adjust vertical (10px) and horizontal (20px) padding as needed */
+    margin-bottom: 10px !important; /* Reduce space between items */
+}
+
+/* Reduce vertical padding in the content of the scholarship item when open */
+.faq-container .faq-content p {
+    margin-bottom: 5px !important; /* Reduce space between paragraphs inside */
+    padding-bottom: 0px !important; /* Ensure no extra padding at the bottom of the content area */
+}
+
+.faq-container .faq-content {
+    padding-top: 5px !important; /* Reduce padding at top of content when open */
+    padding-bottom: 5px !important; /* Reduce padding at bottom of content when open */
+}
