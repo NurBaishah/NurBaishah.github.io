@@ -2221,42 +2221,45 @@ body {
         margin: 0 10px;
     }
 }
-/*--------------------------------------------------------------
-# Portfolio Section (My Works - FINAL FUNCTIONAL HOVER)
---------------------------------------------------------------*/
+/* --- Final Functional Fix for Portfolio Visibility and Hover --- */
 
-/* 1. Ensure all item containers behave uniformly and align correctly */
+/* 1. Ensure the page scrolls and content is not clipped (Override previous failures) */
+#portfolio {
+    overflow: visible !important; /* CRITICAL: Allows content to overflow and forces scrolling */
+    padding-bottom: 80px !important; /* Ensure space below the bottom row */
+    clear: both !important;
+}
+
+/* 2. Style for the Portfolio Item Container (Ensuring flex is off for natural image height) */
 .portfolio .portfolio-item {
-    /* Critical for vertical symmetry: forces items to stretch to the same height */
-    display: flex; 
-    flex-direction: column;
-    height: 100%; 
+    /* REMOVE display: flex and height: 100% to let content define height */
     position: relative; 
     z-index: 1;
-    overflow: hidden; /* This is the native DevFolio setting */
+    overflow: hidden; /* Native DevFolio setting */
+    display: block; /* Revert to block display */
+    height: auto !important; 
 }
 
-/* 2. Fix the image preview aspect ratio and alignment */
+/* 3. Image Display: Let image be its natural size (NO FIXED HEIGHT) */
 .portfolio-item img {
-    /* Force a fixed height for all thumbnails (Symmetry fix) */
-    height: 180px; 
-    object-fit: cover; 
-    width: 100%; 
+    height: auto !important; /* CRITICAL: Let image height be natural */
+    max-width: 100%;
+    width: 100%;
     display: block;
+    object-fit: contain; /* Ensures the whole image is seen */
+    margin-bottom: 5px; /* Add small space below image */
 }
 
-/* 3. The Hover Overlay (portfolio-info) - THIS IS THE COOL EFFECT */
+/* 4. The Hover Overlay (Icons) - RESTORING READABLE TEXT AND HOVER EFFECT */
 .portfolio-item .portfolio-info {
-    /* Positioned to cover the image area */
+    /* Positions the hover overlay icons/text correctly */
     position: absolute;
     left: 0;
     right: 0;
     top: 0;
     bottom: 0;
     z-index: 3;
-    
-    /* CRITICAL: Starts invisible and transparent */
-    opacity: 0;
+    opacity: 0; /* CRITICAL: Starts invisible */
     transition: all ease-in-out 0.3s;
     background: rgba(0, 120, 255, 0.8); /* Blue overlay */
     padding: 15px; 
@@ -2269,26 +2272,24 @@ body {
     text-align: center;
 }
 
-/* 4. HOVER ACTION: Makes the blue overlay appear */
+/* 5. HOVER ACTION: Makes the blue overlay appear */
 .portfolio-item:hover .portfolio-info {
-    opacity: 1;
+    opacity: 1; /* Overlay becomes visible */
 }
 
-/* 5. Styling the text that is inside the hover overlay */
+/* 6. Styling the text that is inside the hover overlay */
 .portfolio .portfolio-item .portfolio-info h4 {
-    color: white; /* Title white on blue hover */
+    color: white !important; /* Text is WHITE on blue hover */
     padding-right: 0 !important;
     font-weight: 700;
-    margin-bottom: 5px;
 }
 
 .portfolio .portfolio-item .portfolio-info p {
-    color: rgba(255, 255, 255, 0.9); /* Summary white on blue hover */
+    color: white !important; /* Text is WHITE on blue hover */
     padding-right: 0 !important;
-    margin-bottom: 0;
 }
 
-/* 6. Centering fix for the grid */
+/* 7. Final Centering Fix for the grid (Keep this for organization) */
 .isotope-container { 
     display: flex !important; 
     flex-wrap: wrap !important; 
