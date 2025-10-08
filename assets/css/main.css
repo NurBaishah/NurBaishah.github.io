@@ -1919,18 +1919,19 @@ body {
 }
 
 /* Styling for the Research Interest GIF (TINY & CLEAN) */
+/* Styling for the Research Interest GIF (SLIGHTLY BIGGER & CLEAN) */
 .research-gif-container {
     text-align: center; /* Keep it centered */
-    margin: 10px auto 15px; /* Reduced vertical spacing */
+    margin: 10px auto 15px; /* Spacing */
     width: 100%;
 }
 
 .research-gif-container .research-gif {
-    max-width: 40px; /* MUCH SMALLER - adjust if 40px is still too big/small */
+    max-width: 60px; /* Increased from 40px to 60px */
     height: auto;
-    border-radius: 0; /* Remove any border-radius */
-    border: none; /* Explicitly remove border */
-    background: none; /* Explicitly remove background */
-    box-shadow: none; /* Remove any shadow */
-    display: inline-block; /* Helps with precise centering */
+    border-radius: 0; 
+    border: none; 
+    background: none; 
+    box-shadow: none; 
+    display: inline-block; 
 }
