@@ -1949,10 +1949,11 @@ body {
 }
 
 /* --- Scholarship Box Narrowing and Styling --- */
+/* --- Scholarship Box Narrowing and Styling (ULTIMATE, AGGRESSIVE FIX) --- */
 
 /* 1. Target the main box item and drastically reduce vertical padding */
-faq-container .faq-item {
-    /* Critical: Set padding to a minimum. 5px should make it very narrow. */
+.faq-container .faq-item {
+    /* Critical: Set padding to an absolute minimum */
     padding-top: 5px !important; 
     padding-bottom: 5px !important; 
     margin-bottom: 8px !important; 
@@ -1963,13 +1964,22 @@ faq-container .faq-item {
     border-radius: 8px !important;
 }
 
-/* 2. Target the heading text inside the box (Closed State) */
+/* 2. Target the Heading and Inner Spans—This is the likely culprit */
 .faq-container .faq-item h3 {
     /* Critical: Zero margin and padding on the heading itself */
     margin: 0 !important;
-    padding: 5px 0 5px 0 !important;
-    line-height: 1.2 !important; /* Tighter line height for the title text */
+    padding: 0 !important;
+    line-height: 1.2 !important; /* Tighter line height */
 }
+
+/* Target the text wrapper inside the collapsible title for zero padding/margin */
+.faq-container .faq-item h3 span {
+    padding: 0 !important;
+    margin: 0 !important;
+    line-height: 1.2 !important;
+    vertical-align: middle !important; /* Prevents spacing issues due to alignment */
+}
+
 
 /* 3. Target the content area inside the box when it is OPEN */
 .faq-container .faq-content {
@@ -1980,9 +1990,8 @@ faq-container .faq-item {
 
 /* 4. Reduce spacing on paragraphs inside the content (Open State) */
 .faq-container .faq-content p {
-    /* Critical: Remove bottom margin from all paragraphs */
     margin-bottom: 5px !important; 
-    line-height: 1.3 !important; /* Tighter line spacing for content text */
+    line-height: 1.3 !important; 
 }
 
 /* 5. Scholarship Title Underline (Ensuring it stays) */
