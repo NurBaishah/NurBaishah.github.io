@@ -1766,37 +1766,46 @@ body {
 /* ANIMATED PROFILE PICTURE BORDER (GUARANTEED VISIBLE) */
 /* ========================================= */
 
+/* ========================================= */
+/* ANIMATED PROFILE PICTURE BORDER (MASSIVE & OBVIOUS) */
+/* ========================================= */
+
 .profile-picture-container {
-    /* Retain size, shape, and positioning */
+    /* Main container for positioning everything */
     position: relative; 
-    width: 180px; 
+    width: 180px; /* Base size for the image */
     height: 180px; 
     border-radius: 50%;
-    overflow: hidden; 
+    /* Keep overflow hidden to contain any initial misalignments, but for the border itself, we'll let it spread */
+    overflow: visible; /* <--- KEY CHANGE: ALLOW OVERFLOW for the massive border */
     z-index: 1; 
+    /* Add a subtle initial shadow to the container for depth */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
 }
 
 .profile-picture-container img {
+    /* Style the image itself */
     width: 100%;
     height: 100%;
     object-fit: cover;
     border-radius: 50%; 
-    border: 5px solid white; /* Thicker white inner border for contrast */
-    position: relative; /* IMPORTANT: Keeps the image above the 'after' element */
-    z-index: 2; /* Ensures the image is on top */
+    border: 5px solid white; /* Still a nice white inner border */
+    position: relative; 
+    z-index: 2; /* Ensures image is on top */
+    display: block; /* Helps with centering/rendering */
 }
 
-/* --- THE MOVING GRADIENT LAYER (::after) --- */
-.profile-picture-container::after {
+/* --- THE MASSIVE, MOVING GRADIENT BORDER ITSELF (::before) --- */
+.profile-picture-container::before {
     content: '';
     position: absolute;
-    /* Size the ::after element to cover the image plus border space */
-    top: -15px;
-    left: -15px;
-    right: -15px;
-    bottom: -15px;
-    border-radius: 50%;
-    z-index: 0; /* Place behind the image (z-index: 2) */
+    /* This element will be MUCH larger than the image to create the spread border */
+    top: -25px; /* Adjust this value to control how "spread out" the border is */
+    left: -25px; /* Make it equal to top for a uniform border */
+    right: -25px;
+    bottom: -25px;
+    border-radius: 50%; /* Keep it circular */
+    z-index: 0; /* Place behind the image */
 
     /* Apply the BIG, VIBRANT gradient */
     background: linear-gradient(
@@ -1809,13 +1818,83 @@ body {
     );
     
     /* Animation settings */
-    background-size: 300% 300%; 
+    background-size: 400% 400%; /* Even larger background for more movement */
     animation: 
         rotateBorder 4s linear infinite, 
         colorShift 8s linear infinite alternate; 
     
-    /* Add a strong glow/shadow */
-    filter: drop-shadow(0 0 10px rgba(0, 120, 255, 1));
+    /* Add a very strong glow/shadow */
+    filter: drop-shadow(0 0 20px rgba(0, 120, 255, 1)) drop-shadow(0 0 30px rgba(255, 0, 120, 0.8)); /* Double shadow for more glow */
+}
+
+/* KEYFRAMES for the animation (remain the same) */
+@keyframes rotateBorder {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+
+@keyframes colorShift {
+    0% { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(360deg); }
+}/* ========================================= */
+/* ANIMATED PROFILE PICTURE BORDER (MASSIVE & OBVIOUS) */
+/* ========================================= */
+
+.profile-picture-container {
+    /* Main container for positioning everything */
+    position: relative; 
+    width: 180px; /* Base size for the image */
+    height: 180px; 
+    border-radius: 50%;
+    /* Keep overflow hidden to contain any initial misalignments, but for the border itself, we'll let it spread */
+    overflow: visible; /* <--- KEY CHANGE: ALLOW OVERFLOW for the massive border */
+    z-index: 1; 
+    /* Add a subtle initial shadow to the container for depth */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+}
+
+.profile-picture-container img {
+    /* Style the image itself */
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%; 
+    border: 5px solid white; /* Still a nice white inner border */
+    position: relative; 
+    z-index: 2; /* Ensures image is on top */
+    display: block; /* Helps with centering/rendering */
+}
+
+/* --- THE MASSIVE, MOVING GRADIENT BORDER ITSELF (::before) --- */
+.profile-picture-container::before {
+    content: '';
+    position: absolute;
+    /* This element will be MUCH larger than the image to create the spread border */
+    top: -25px; /* Adjust this value to control how "spread out" the border is */
+    left: -25px; /* Make it equal to top for a uniform border */
+    right: -25px;
+    bottom: -25px;
+    border-radius: 50%; /* Keep it circular */
+    z-index: 0; /* Place behind the image */
+
+    /* Apply the BIG, VIBRANT gradient */
+    background: linear-gradient(
+        45deg, 
+        #ff0077, /* Vibrant Pink */
+        #00aaff, /* Bright Sky Blue */
+        #7f00ff, /* Deep Purple */
+        #ffcc00, /* Energetic Gold */
+        #00ffaa  /* Emerald Green */
+    );
+    
+    /* Animation settings */
+    background-size: 400% 400%; /* Even larger background for more movement */
+    animation: 
+        rotateBorder 4s linear infinite, 
+        colorShift 8s linear infinite alternate; 
+    
+    /* Add a very strong glow/shadow */
+    filter: drop-shadow(0 0 20px rgba(0, 120, 255, 1)) drop-shadow(0 0 30px rgba(255, 0, 120, 0.8)); /* Double shadow for more glow */
 }
 
 /* KEYFRAMES for the animation (remain the same) */
@@ -1828,10 +1907,3 @@ body {
     0% { filter: hue-rotate(0deg); }
     100% { filter: hue-rotate(360deg); }
 }
-
-/* * IMPORTANT FIX: To make the border visible, we need to ensure the 
-* image itself (which is circular) effectively "cuts a hole" in the 
-* larger background/::after element.
-* By ensuring the image is on top (z-index: 2) and has a white border, 
-* the gradient will be forced into the visible ring.
-*/
