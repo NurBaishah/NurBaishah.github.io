@@ -2100,5 +2100,32 @@ body {
     height: 100%;
     border: 0;
 }
+/* Custom Styling for Extracurricular Activities (Modified Service Boxes) */
 
+.custom-activity-box {
+    /* Use a very light blue background to distinguish them */
+    background-color: #f8faff; 
+    border: 1px solid #e0e6f0;
+    border-radius: 10px;
+    padding: 30px;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.custom-activity-box:hover {
+    /* Lift and glow effect on hover */
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0, 50, 200, 0.1); 
+}
+
+.custom-activity-box .icon i {
+    color: var(--accent-color, #335EFF); /* Ensure icons use your main blue color */
+    background: #e0e6f0; /* Light background for the icon circle */
+}
+
+.custom-activity-box h3 {
+    font-size: 1.25em;
+    font-weight: 700;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
 /* (Include other award-item, award-title, award-details styling here...) */
