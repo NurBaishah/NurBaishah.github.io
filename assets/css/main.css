@@ -2221,19 +2221,75 @@ body {
         margin: 0 10px;
     }
 }
-
 /*--------------------------------------------------------------
-# Portfolio Section (My Works - Custom Sizing/Centering)
+# Portfolio Section (My Works - FINAL FUNCTIONAL FIX)
 --------------------------------------------------------------*/
-.portfolio .portfolio-item .portfolio-info { padding-top: 15px; padding-bottom: 15px; } /* Override default padding */
-.portfolio-item { display: flex; flex-direction: column; height: 100%; } /* Enables column layout for symmetry */
-.portfolio-item img { height: 180px; object-fit: cover; width: 100%; line-height: 0; } /* Forces image height for symmetry */
-.portfolio-item .portfolio-info { flex-grow: 1; padding-top: 15px; } /* Forces text box to fill remaining height */
 
-/* Fix for centering items when filtering (My Works) */
-.isotope-container { display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start; }
-.isotope-item { margin-left: auto; margin-right: auto; }
-.portfolio-item .portfolio-info { opacity: 0; position: absolute; left: 0; right: 0; top: 0; bottom: 0; z-index: 2; background: rgba(0, 0, 0, 0.7); padding: 10px 15px; transition: all 0.3s ease-in-out; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
-.portfolio-item:hover .portfolio-info { opacity: 1; }
-.portfolio-item img { width: 100%; height: auto; display: block; line-height: 0; }
-.portfolio-item .portfolio-info .preview-link, .portfolio-item .portfolio-info .details-link { position: relative !important; right: auto !important; top: auto !important; margin: 5px; }
+/* Ensures all item containers behave uniformly */
+.portfolio .portfolio-item {
+    /* Critical for vertical symmetry: forces items to stretch to the same height */
+    display: flex; 
+    flex-direction: column;
+    height: 100%; 
+    position: relative; /* Essential for containing the hover effect */
+}
+
+/* Fix the image preview aspect ratio and alignment */
+.portfolio-item img {
+    /* Force a fixed height for all thumbnails */
+    height: 180px; 
+    /* Crucial: Scales image to cover the entire forced area without distortion */
+    object-fit: cover; 
+    width: 100%; 
+    line-height: 0; 
+}
+
+/* Ensure the text box starts below the image and fills the remaining space */
+.portfolio-item .portfolio-info {
+    /* Keeps the hover overlay at the bottom where it belongs */
+    opacity: 0; 
+    position: absolute; 
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 3; /* Standard DevFolio Z-index */
+    transition: all ease-in-out 0.3s;
+    background: color-mix(in srgb, var(--background-color), transparent 10%); /* Standard overlay */
+    padding: 15px; 
+    
+    /* ADDED: Forces the visible description area to take space */
+    position: relative; 
+    opacity: 1; 
+    background: none; 
+    z-index: 1; /* Pushes the text layer down */
+    
+    /* Ensure the text below the hover area takes up space */
+    height: auto; 
+    flex-grow: 1; 
+    
+    /* Resetting unnecessary aggressive centering from previous steps */
+    display: block !important; 
+    text-align: left !important;
+}
+
+/* Restoring the hover effect styling */
+.portfolio-item:hover .portfolio-info {
+    opacity: 1;
+    bottom: 20px;
+    background: color-mix(in srgb, var(--background-color), transparent 10%) !important;
+    padding: 15px !important;
+    
+    /* Making the icons reappear correctly */
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+/* --- Final Centering Fix for Grid --- */
+.isotope-container { 
+    display: flex; 
+    flex-wrap: wrap; 
+    justify-content: center; 
+    align-items: flex-start; 
+}
