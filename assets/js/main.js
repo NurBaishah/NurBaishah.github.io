@@ -146,17 +146,28 @@
   const glightbox = GLightbox({
     selector: '.glightbox'
   });
- 
-  // CRITICAL FIX: Add listener to ensure .details-link navigates normally, 
-  // bypassing the Glightbox modal takeover.
-  document.querySelectorAll('.details-link').forEach(link => {
-    link.addEventListener('click', function(e) {
-      // Allow only the original link action to proceed
-      window.location.href = this.href;
-      // Prevent glightbox and other scripts from interfering
-      e.preventDefault(); 
-      e.stopImmediatePropagation();
-    });
+
+  // CRITICAL FIX: Add listener to ensure Glightbox can open HTML pages correctly
+  document.querySelectorAll('.glightbox').forEach(link => {
+    if (link.getAttribute('data-type') === 'url') {
+      link.addEventListener('click', function(e) {
+        // This ensures the external HTML content is loaded correctly into the lightbox
+        e.preventDefault(); 
+        e.stopPropagation();
+        
+        const instance = GLightbox({
+            selector: false,
+            // Configure the modal size for the HTML page content
+            width: '90vw', 
+            height: '90vh',
+            elements: [{
+                'href': this.href,
+                'type': 'url'
+            }]
+        });
+        instance.open();
+      });
+    }
   });
 
   /**
