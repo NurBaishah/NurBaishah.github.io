@@ -1758,42 +1758,52 @@ body {
     0% { transform: translateX(-50%); }
     100% { transform: translateX(0); }
 }
+/* ========================================= */
+/* ANIMATED PROFILE PICTURE BORDER (BIG & OBVIOUS) */
+/* ========================================= */
+
 .profile-picture-container {
-    /* Set size and shape for the container */
     position: relative; 
-    width: 160px; /* Adjust size to your preference */
-    height: 160px; /* Must match width for a circle */
+    width: 180px; /* Slightly larger image container */
+    height: 180px; 
     border-radius: 50%;
-    overflow: hidden; /* Hide excess content */
-    margin: 0; /* Adjust if needed */
-    z-index: 1; /* Ensure it sits above other elements */
+    overflow: hidden; 
+    margin: 0; 
+    z-index: 1; 
+    /* Add a subtle initial shadow to the container itself for depth */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
 }
 
-/* Style the image inside the container */
 .profile-picture-container img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     border-radius: 50%; 
-    border: 3px solid white; /* Adds a nice separation layer */
+    border: 5px solid white; /* Thicker white inner border for contrast */
 }
 
-/* --- The Moving Gradient Border Effect (using ::before) --- */
-
+/* --- The BIG, OBVIOUS, Moving Gradient Border Effect (using ::before) --- */
 .profile-picture-container::before {
     content: '';
     position: absolute;
-    top: -8px; /* Offset: Controls the distance from the image and thickness */
-    left: -8px;
-    right: -8px;
-    bottom: -8px;
+    top: -15px; /* SIGNIFICANTLY INCREASED OFFSET for a wider border area */
+    left: -15px;
+    right: -15px;
+    bottom: -15px;
     border-radius: 50%;
-    border: 8px solid transparent; /* Border thickness */
+    border: 15px solid transparent; /* MUCH THICKER TRANSPARENT BORDER */
     
-    /* Blue/Purple Gradient for the border */
-    background: linear-gradient(45deg, #0077ff, #7f00ff, #00bfff, #da70d6) border-box; 
+    /* More vibrant and contrasting color gradient */
+    background: linear-gradient(
+        45deg, 
+        #ff0077, /* Vibrant Pink */
+        #00aaff, /* Bright Sky Blue */
+        #7f00ff, /* Deep Purple */
+        #ffcc00, /* Energetic Gold */
+        #00ffaa  /* Emerald Green */
+    ) border-box; 
     
-    /* This combination creates the hollow gradient border effect */
+    /* Masking remains the same for the hollow effect */
     -webkit-mask: 
       linear-gradient(#fff 0 0) content-box, 
       linear-gradient(#fff 0 0);
@@ -1801,20 +1811,22 @@ body {
             mask-composite: exclude;
     z-index: -1; 
 
-    /* Animation settings */
-    background-size: 200% 200%; /* Allows gradient colors to move */
-    animation: rotateBorder 5s linear infinite, colorShift 10s linear infinite alternate;
+    /* Animation settings - adjusted for more dynamic movement */
+    background-size: 300% 300%; /* Even larger background size for more apparent movement */
+    animation: 
+        rotateBorder 4s linear infinite, /* Slightly faster rotation */
+        colorShift 8s linear infinite alternate; /* Slightly faster color shift */
+    
+    /* Add a subtle glow/shadow to the animated border itself */
+    filter: drop-shadow(0 0 10px rgba(0, 120, 255, 0.7));
 }
 
-
-/* KEYFRAMES for the animation */
-/* 1. Rotates the background gradient to give a moving light effect */
+/* KEYFRAMES for the animation (remain the same, but values adjusted above) */
 @keyframes rotateBorder {
     0% { background-position: 0% 50%; }
     100% { background-position: 100% 50%; }
 }
 
-/* 2. Shifts the overall color hue slowly over time (changing color) */
 @keyframes colorShift {
     0% { filter: hue-rotate(0deg); }
     100% { filter: hue-rotate(360deg); }
