@@ -1671,57 +1671,7 @@ section,
   margin-bottom: 30px;
 }
 
-/* Skills Section - Replace old progress bars */
-.about .skills-content {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 12px;
-  margin-top: 20px;
-}
 
-.skill-tag {
-  background: var(--accent-color);
-  color: var(--contrast-color);
-  font-size: 14px;
-  padding: 8px 16px;
-  border-radius: 50px;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  cursor: default;
-}
-
-.skill-tag:hover {
-  transform: scale(1.1);
-  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
-}
-
-/* Remove old blue progress bars */
-.about .progress,
-.about .progress-bar-wrap,
-.about .progress-bar {
-  display: none !important;
-}
-
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-  .about .container {
-    padding: 30px 20px;
-  }
-
-  .about .about-me h4 {
-    font-size: 24px;
-  }
-
-  .about .about-me p {
-    font-size: 16px;
-  }
-
-  .skill-tag {
-    font-size: 13px;
-    padding: 6px 12px;
-  }
-}
  
 }
 /* ===========================
