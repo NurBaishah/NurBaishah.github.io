@@ -140,22 +140,22 @@
    */
   new PureCounter();
 
-  /**
+ /**
    * Initiate glightbox
    */
   const glightbox = GLightbox({
     selector: '.glightbox'
   });
  
-  // CRITICAL FIX: Add listener to prevent glightbox from hijacking HTML page links.
-  // Glightbox is designed for media. To make the details link work, we manually 
-  // check if the link points to an .html page and let the browser navigate normally.
+  // CRITICAL FIX: Add listener to ensure .details-link navigates normally, 
+  // bypassing the Glightbox modal takeover.
   document.querySelectorAll('.details-link').forEach(link => {
     link.addEventListener('click', function(e) {
-      if (this.href.includes('.html')) {
-        // Prevent glightbox from opening a modal
-        e.stopPropagation();
-      }
+      // Allow only the original link action to proceed
+      window.location.href = this.href;
+      // Prevent glightbox and other scripts from interfering
+      e.preventDefault(); 
+      e.stopImmediatePropagation();
     });
   });
 
