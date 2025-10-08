@@ -1888,7 +1888,7 @@ body {
     );
     
     /* Animation settings */
-    background-size: 400% 400%; /* Even larger background for more movement */
+    background-size: 200% 200%; /* Even larger background for more movement */
     animation: 
         rotateBorder 4s linear infinite, 
         colorShift 8s linear infinite alternate; 
