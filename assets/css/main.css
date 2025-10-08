@@ -1948,37 +1948,48 @@ body {
     margin-top: 5px; /* Reduced gap between GIF and text */
 }
 
-/* Make Scholarship main title underlined blue */
+/* --- Scholarship Box Narrowing and Styling --- */
+
+/* 1. Target the main box item and drastically reduce vertical padding */
+.faq-container .faq-item {
+    /* Reduced vertical padding to make the box tighter */
+    padding-top: 10px !important; 
+    padding-bottom: 10px !important; 
+    margin-bottom: 8px !important; /* Slightly tighter spacing between boxes */
+
+    /* Apply the gradient blue box style (already implemented, just confirming it's active) */
+    background: linear-gradient(to bottom right, #f4f8ff, #e9efff);
+    box-shadow: 0 5px 15px rgba(0, 0, 100, 0.1);
+    border-radius: 8px;
+}
+
+/* 2. Target the content inside the box when it is OPEN */
+.faq-container .faq-content {
+    /* Reduce padding for the content area */
+    padding-top: 5px !important; 
+    padding-bottom: 5px !important; 
+}
+
+/* 3. Reduce spacing on paragraphs inside the content */
+.faq-container .faq-content p {
+    margin-bottom: 5px !important; 
+    line-height: 1.4; /* Slightly tighter line spacing for text inside */
+}
+
+/* 4. Scholarship Title Underline (Carried over from previous step) */
 #scholarship .content h3 strong {
-    /* Assuming section-title h2 has this style */
     position: relative;
-    padding-bottom: 8px; /* Adjust as needed */
+    padding-bottom: 8px; 
+    display: inline-block;
 }
 
 #scholarship .content h3 strong::after {
     content: "";
     position: absolute;
     display: block;
-    width: 50px; /* Length of the underline */
-    height: 3px; /* Thickness of the underline */
-    background: var(--accent-color); /* Your theme's blue color */
+    width: 50px; 
+    height: 3px; 
+    background: var(--accent-color, #335EFF); /* Fallback to a strong blue */
     bottom: 0;
     left: 0;
-}
-
-/* Reduce vertical padding in each scholarship item */
-.faq-container .faq-item {
-    padding: 10px 20px !important; /* Adjust vertical (10px) and horizontal (20px) padding as needed */
-    margin-bottom: 10px !important; /* Reduce space between items */
-}
-
-/* Reduce vertical padding in the content of the scholarship item when open */
-.faq-container .faq-content p {
-    margin-bottom: 5px !important; /* Reduce space between paragraphs inside */
-    padding-bottom: 0px !important; /* Ensure no extra padding at the bottom of the content area */
-}
-
-.faq-container .faq-content {
-    padding-top: 5px !important; /* Reduce padding at top of content when open */
-    padding-bottom: 5px !important; /* Reduce padding at bottom of content when open */
 }
