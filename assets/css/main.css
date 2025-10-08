@@ -2121,3 +2121,33 @@ body {
         height: 80px;
     }
 }
+/* --- CLASSIC WOODEN PICTURE FRAME STYLING --- */
+
+.classic-wooden-frame {
+    /* Critical: Center the content and add space */
+    margin: 30px auto; 
+    padding: 30px; /* Internal padding to create the space between the frame edge and the awards */
+    max-width: 900px; /* Define the maximum width of the whole framed area */
+    border-radius: 5px;
+    
+    /* Using a fallback solid border in case the image doesn't load */
+    border: 30px solid #5C4033; 
+    
+    /* === KEY TO THE EFFECT: CSS BORDER IMAGE === */
+    /* Replace 'wood_texture.png' with your actual path/filename */
+    border-image: url('assets/img/wood_texture.png') 30 / 30px / 0 round; 
+    /* The value '30' slices the image 30px from each side for the border effect. */
+
+    /* Ensure the background inside the frame is clean */
+    background-color: #fafafa;
+    
+    /* Add a subtle drop shadow to lift the entire frame off the page */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+}
+
+/* Ensure the individual award boxes still look good within the wood frame */
+.award-item {
+    /* Slightly reduce the box shadow inside the heavy frame */
+    box-shadow: 0 5px 15px rgba(0, 0, 100, 0.1); 
+    height: 100%;
+}
