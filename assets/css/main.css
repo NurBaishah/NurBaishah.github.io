@@ -2294,3 +2294,26 @@ body {
     justify-content: center; 
     align-items: flex-start; 
 }
+
+/* --- CRITICAL FIX: FORCING SCROLL AND UNCLIPPING CONTENT --- */
+
+html, body {
+    /* 1. Ensure the browser allows content to dictate height */
+    overflow-y: scroll !important;
+    min-height: 100vh !important;
+    height: auto !important; /* Prevents height from being fixed at 100% of viewport */
+}
+
+/* 2. Target the main content wrapper and disable clipping */
+main.main {
+    overflow: visible !important; /* This is the most likely culprit for clipping */
+    min-height: 1px !important; /* Forces the main content area to render */
+    padding-bottom: 100px !important; /* Ensures space below your last project */
+}
+
+/* 3. Aggressive clear on the portfolio section (to prevent subsequent sections from floating up) */
+#portfolio {
+    clear: both !important;
+    padding-bottom: 100px !important;
+    overflow: visible !important;
+}
