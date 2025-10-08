@@ -1642,71 +1642,80 @@ section,
   margin: 0 auto;         /* centers the timeline horizontally */
   padding-left: 40px;
 }
-/* General styling for the new section to place it correctly */
 .skills-box-container {
-    margin-top: 30px; /* Space below your contact info */
-    width: 100%;
-    max-width: 350px; /* Adjust this to match the width of your left column */
+    margin-top: 30px;
+    /* Increase max-width to use more space */
+    max-width: 450px; 
+    /* The main image and contact section should also have a larger container 
+       to match this width, otherwise this change won't take full effect.
+       Assume the main container is now wider. */
 }
 
 .skill-group {
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 
 .skill-group h3 {
     font-size: 1.1em;
-    border-bottom: 2px solid #333; /* A small separator */
+    border-bottom: 2px solid #333;
     padding-bottom: 5px;
     margin-bottom: 10px;
 }
 
 /* Styles for the moving box itself */
 .moving-text-box {
-    overflow: hidden; /* This hides the text when it moves outside the box */
-    white-space: nowrap; /* Prevents the text from wrapping to the next line */
-    background-color: #f0f0f0; /* Light background for the box */
-    padding: 8px 0;
-    border-radius: 4px;
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 5px 0; /* Reduced vertical padding */
 }
 
-.moving-text-box span {
-    /* Apply the animation */
+/* Container for all the buttons - must be set to inline-block for scrolling */
+.skill-list-track {
     display: inline-block;
-    padding-left: 100%; /* Start the text completely off-screen to the right */
-    animation: scroll-left 40s linear infinite; /* 40s is the duration, adjust for speed */
+    white-space: nowrap;
+    /* Start position is far off-screen to the right to create a seamless loop */
+    padding-left: 100%; 
+    animation: scroll-left 15s linear infinite; /* FASTER ANIMATION: 15s */
 }
 
-/* Define the scrolling animation */
+/* 2. COLORFUL, SEPARATE BUTTONS/BOXES */
+.skill-button {
+    /* Basic button styling */
+    display: inline-block;
+    margin-right: 10px; /* Space between buttons */
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.9em;
+    font-weight: bold;
+    
+    /* Using CSS Variables for dynamic colors */
+    background-color: var(--color, #ccc); /* Uses the color set in HTML, defaults to gray */
+    color: white; /* White text for contrast */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+/* Define the faster scrolling animation */
 @keyframes scroll-left {
     0% {
-        transform: translateX(0); /* Start position */
+        transform: translateX(0);
     }
     100% {
-        transform: translateX(-100%); /* End position (moves the text 100% of its own width to the left) */
+        transform: translateX(-100%);
     }
 }
 
-/* A reversed scroll for variation */
-.reverse-scroll span {
-    animation: scroll-right 50s linear infinite; /* Longer duration for a different speed */
+/* Reversed scroll - also made faster */
+.reverse-scroll .skill-list-track {
+    animation: scroll-right 20s linear infinite; /* Slightly slower reverse scroll */
 }
 
 @keyframes scroll-right {
     0% {
-        transform: translateX(-100%); /* Start off-screen to the left */
+        /* Start position must be off-screen to the left */
+        transform: translateX(-100%); 
     }
     100% {
-        transform: translateX(0); /* End position back to the right */
+        transform: translateX(0);
     }
-}
-
-/* Simple list for Languages */
-.skill-group ul {
-    list-style: none;
-    padding-left: 0;
-    font-size: 0.95em;
-}
-
-.skill-group ul li {
-    margin-bottom: 5px;
 }
