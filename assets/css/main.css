@@ -2105,10 +2105,11 @@ body {
 .timeline-wrapper {
     overflow-x: auto; /* Allows horizontal scrolling if content overflows */
     padding: 30px 0;
-    margin: 30px 0;
-    border-top: 3px solid var(--accent-color, #335EFF); /* The main blue timeline bar */
+    /* Tighter Gap: Reduced margin from 30px to 15px */
+    margin: 15px 0 30px 0;
+    border-top: 3px solid var(--accent-color, #335EFF); 
     border-bottom: 3px solid var(--accent-color, #335EFF);
-    background-color: #f8faff; /* Light background for the timeline area */
+    background-color: #f8faff; 
     border-radius: 8px;
     box-shadow: 0 5px 15px rgba(0, 0, 100, 0.1);
 }
@@ -2117,33 +2118,47 @@ body {
     list-style: none;
     padding: 0;
     margin: 0;
-    display: flex; /* Key for horizontal layout */
-    white-space: nowrap; /* Prevents items from wrapping */
-    justify-content: space-between; /* Distributes items evenly */
+    display: flex; 
+    white-space: nowrap; 
+    justify-content: space-between;
 }
 
 .timeline-item {
     display: inline-block;
-    width: 300px; /* Fixed width for each item (adjust if needed) */
+    width: 300px; 
     padding: 15px;
     margin: 0 15px;
     position: relative;
-    top: 30px; /* Pushes items down from the main timeline bar */
+    top: 30px; 
     background-color: white;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    border-top: 5px solid #ccc; /* Placeholder for skill color differentiation */
+    border-top: 5px solid #ccc; 
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, border-color 0.3s;
-    text-align: left;
-    white-space: normal; /* Allows content inside to wrap */
+    /* AGGRESSIVE FIX: Centers title, role, and icon containers */
+    text-align: center !important; 
+    white-space: normal; 
 }
 
 /* Hover Animation: The "very cool" effect */
 .timeline-item:hover {
-    transform: translateY(-20px) scale(1.05); /* Lifts the box significantly */
-    box-shadow: 0 20px 40px rgba(0, 0, 100, 0.3); /* Creates a deep shadow lift */
+    transform: translateY(-20px) scale(1.05); 
+    box-shadow: 0 20px 40px rgba(0, 0, 100, 0.3); 
     border-color: var(--accent-color, #335EFF);
-    z-index: 10; /* Ensures the hovered item sits above others */
+    z-index: 10; 
+}
+
+/* --- Content Styling --- */
+
+/* Icon Container */
+.timeline-icon-container {
+    height: 40px; 
+    margin-bottom: 10px;
+}
+
+.timeline-icon {
+    font-size: 1.8em; 
+    color: var(--accent-color, #335EFF); 
 }
 
 .timeline-date {
@@ -2164,11 +2179,21 @@ body {
     color: #333;
 }
 
+/* CORRECTED STYLE SWAP: Role is normal/bold */
 .timeline-role {
     font-size: 0.95em;
-    font-style: italic;
-    color: #555;
-    margin-bottom: 8px;
+    font-style: normal;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 2px;
+}
+
+/* NEW STYLE: Place is italic */
+.timeline-place {
+    font-size: 0.85em;
+    font-style: italic; 
+    color: #777;
+    margin-bottom: 8px; 
 }
 
 .timeline-details {
@@ -2176,32 +2201,23 @@ body {
     font-size: 0.85em;
     color: #666;
     line-height: 1.4;
+    /* RE-ALIGN: Detailed description must be left-aligned for readability */
+    text-align: left !important;
 }
 
-/* Optional: Categorizing by color (based on the item- classes in HTML) */
-.item-design { border-top-color: #7f00ff; } /* Purple for design */
-.item-mentorship { border-top-color: #00aaff; } /* Blue for mentorship */
-.item-leadership { border-top-color: #ffcc00; } /* Gold for leadership */
+/* Optional: Categorizing by color */
+.item-design { border-top-color: #7f00ff; } 
+.item-mentorship { border-top-color: #00aaff; } 
+.item-leadership { border-top-color: #ffcc00; } 
 
-/* Optional: Adjusting for small screens if content is too wide */
+/* Optional: Adjusting for small screens */
 @media (max-width: 768px) {
     .timeline-wrapper {
         padding: 15px 0;
         margin: 20px 0;
     }
     .timeline-item {
-        width: 80vw; /* Take up most of the viewport width on small screens */
+        width: 80vw; 
         margin: 0 10px;
     }
-}
-/* --- Centering Titles and Roles within the Timeline Boxes --- */
-
-/* Centers all text content inside the timeline box */
-.timeline-item {
-    text-align: center !important; 
-}
-
-/* Re-aligns the detailed description text to the left for better readability */
-.timeline-details {
-    text-align: left !important;
 }
