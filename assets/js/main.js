@@ -141,10 +141,22 @@
   new PureCounter();
 
   /**
-   * Initiate glightbox
-   */
-  const glightbox = GLightbox({
-    selector: '.glightbox'
+   * Initiate glightbox
+   */
+  const glightbox = GLightbox({
+    selector: '.glightbox'
+  });
+ 
+  // CRITICAL FIX: Add listener to prevent glightbox from hijacking HTML page links.
+  // Glightbox is designed for media. To make the details link work, we manually 
+  // check if the link points to an .html page and let the browser navigate normally.
+  document.querySelectorAll('.details-link').forEach(link => {
+    link.addEventListener('click', function(e) {
+      if (this.href.includes('.html')) {
+        // Prevent glightbox from opening a modal
+        e.stopPropagation();
+      }
+    });
   });
 
   /**
@@ -249,19 +261,3 @@
   document.addEventListener('scroll', navmenuScrollspy);
 
 })();
-/* --- Forced Re-initialization Fix for Portfolio Layout --- */
-document.addEventListener('DOMContentLoaded', () => {
-  // Re-initialize Isotope layout for My Works
-  const portfolioContainer = document.querySelector('.isotope-container');
-  if (portfolioContainer) {
-    new Isotope(portfolioContainer, {
-      itemSelector: '.portfolio-item',
-      layoutMode: 'masonry'
-    });
-  }
-
-  // Ensure Glightbox is initialized correctly for detail/video links
-  const glightbox = GLightbox({
-    selector: '.glightbox'
-  });
-});
