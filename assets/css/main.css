@@ -1758,3 +1758,64 @@ body {
     0% { transform: translateX(-50%); }
     100% { transform: translateX(0); }
 }
+.profile-picture-container {
+    /* Set size and shape for the container */
+    position: relative; 
+    width: 160px; /* Adjust size to your preference */
+    height: 160px; /* Must match width for a circle */
+    border-radius: 50%;
+    overflow: hidden; /* Hide excess content */
+    margin: 0; /* Adjust if needed */
+    z-index: 1; /* Ensure it sits above other elements */
+}
+
+/* Style the image inside the container */
+.profile-picture-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%; 
+    border: 3px solid white; /* Adds a nice separation layer */
+}
+
+/* --- The Moving Gradient Border Effect (using ::before) --- */
+
+.profile-picture-container::before {
+    content: '';
+    position: absolute;
+    top: -8px; /* Offset: Controls the distance from the image and thickness */
+    left: -8px;
+    right: -8px;
+    bottom: -8px;
+    border-radius: 50%;
+    border: 8px solid transparent; /* Border thickness */
+    
+    /* Blue/Purple Gradient for the border */
+    background: linear-gradient(45deg, #0077ff, #7f00ff, #00bfff, #da70d6) border-box; 
+    
+    /* This combination creates the hollow gradient border effect */
+    -webkit-mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+    z-index: -1; 
+
+    /* Animation settings */
+    background-size: 200% 200%; /* Allows gradient colors to move */
+    animation: rotateBorder 5s linear infinite, colorShift 10s linear infinite alternate;
+}
+
+
+/* KEYFRAMES for the animation */
+/* 1. Rotates the background gradient to give a moving light effect */
+@keyframes rotateBorder {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+
+/* 2. Shifts the overall color hue slowly over time (changing color) */
+@keyframes colorShift {
+    0% { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(360deg); }
+}
