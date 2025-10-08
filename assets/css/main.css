@@ -1917,3 +1917,23 @@ body {
     border-radius: 12px;
     /* ... other styles ... */
 }
+
+/* Styling for the Research Interest GIF */
+.research-gif-container {
+    text-align: center; /* Center the GIF horizontally */
+    margin: 20px auto 30px; /* Add vertical spacing */
+    width: 100%;
+}
+
+.research-gif-container .research-gif {
+    /* Set a max width to prevent it from dominating the entire frame */
+    max-width: 150px; 
+    height: auto;
+    border-radius: 8px; /* Slight rounding for integration */
+}
+
+/* Ensure the text content below the GIF is well-spaced */
+.research-text-content {
+    text-align: justify; /* Optional: Makes the text look neat */
+    margin-top: 20px;
+}
