@@ -2222,44 +2222,72 @@ body {
     }
 }
 /*--------------------------------------------------------------
-# Portfolio Section (My Works - FINAL FUNCTIONAL FIX)
+# Portfolio Section (My Works - FINAL STABILITY FIX)
 --------------------------------------------------------------*/
 
-* --- Final Functional Fix for Portfolio Visibility and Layout --- */
-
-/* 1. Ensure all item containers are visible and functional */
+/* 1. Ensure all item containers behave uniformly and align correctly */
 .portfolio .portfolio-item {
-    display: flex !important; /* Force flex display */
-    visibility: visible !important; /* CRITICAL: Force visibility */
-    opacity: 1 !important; /* CRITICAL: Force opacity to 1 */
-    
-    /* Standard DevFolio structure for alignment */
+    /* Critical for vertical symmetry: forces items to stretch to the same height */
+    display: flex; 
     flex-direction: column;
-    height: 100%;
+    height: 100%; 
     position: relative; 
     z-index: 1;
+    overflow: hidden; /* Standard DevFolio setting */
 }
 
-/* 2. Restore Image and Info Block Styling */
+/* 2. Fix the image preview aspect ratio and alignment */
 .portfolio-item img {
-    height: 180px;
+    /* Force a fixed height for all thumbnails (Symmetry fix) */
+    height: 180px; 
     object-fit: cover; 
     width: 100%; 
     display: block;
 }
 
+/* 3. The Hover Overlay (portfolio-info) - THIS IS THE FIX */
 .portfolio-item .portfolio-info {
-    /* Ensures the visible text container is present and aligned */
-    position: relative !important;
-    opacity: 1 !important;
-    background: none !important;
-    z-index: 1;
-    flex-grow: 1;
-    padding-top: 15px;
-    text-align: left;
+    /* Standard DevFolio: Positioned to cover the image */
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 3;
+    
+    /* CRITICAL: Starts invisible and transparent */
+    opacity: 0;
+    transition: all ease-in-out 0.3s;
+    background: rgba(0, 0, 0, 0.7); /* Dark overlay */
+    padding: 15px; 
+    
+    /* Ensure content aligns (icons/title) */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
-/* 3. Re-enable the Isotope Container for Centering */
+/* 4. Make the hover overlay appear on mouse touch */
+.portfolio-item:hover .portfolio-info {
+    opacity: 1;
+    bottom: 0; /* Ensures full coverage */
+}
+
+/* 5. Styling the text that is inside the hover overlay */
+.portfolio .portfolio-item .portfolio-info h4 {
+    color: white; /* Title white on dark hover */
+    padding-right: 0 !important;
+    font-weight: 700;
+}
+
+.portfolio .portfolio-item .portfolio-info p {
+    color: rgba(255, 255, 255, 0.8); /* Summary white on dark hover */
+    padding-right: 0 !important;
+}
+
+/* 6. Fix for centering items when filtering (My Works) */
 .isotope-container { 
     display: flex !important; 
     flex-wrap: wrap !important; 
