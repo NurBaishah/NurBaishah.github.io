@@ -1648,10 +1648,6 @@ section,
     max-width: 500px; 
 }
 
-.skill-group {
-    margin-bottom: 25px;
-}
-
 .skill-group h3 {
     font-size: 1.1em;
     border-bottom: 2px solid #333;
@@ -1664,8 +1660,15 @@ section,
     overflow: hidden;
     white-space: nowrap;
     padding: 5px 0; 
-    border-radius: 5px; /* Slight roundness for the main box */
-    background-color: #f8f8f8; /* Very subtle background for the moving area */
+    /* Change background to transparent or a very light blue to match the frame */
+    background-color: transparent; 
+    border-radius: 0; /* Remove any border radius that might break the blend */
+}
+
+/* Ensure the skill groups themselves don't have conflicting backgrounds */
+.skill-group {
+    margin-bottom: 25px;
+    background-color: transparent; 
 }
 
 .skill-list-track {
