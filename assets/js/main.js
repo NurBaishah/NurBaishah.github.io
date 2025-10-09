@@ -1,12 +1,12 @@
 /**
 * Template Name: DevFolio
-* (Modified by Nur Baishah's Custom Code)
+* (Modified by Nur Baishah's Final Code)
 */
 
 (function() {
   "use strict";
 
-  // --- STANDARD DEV-FOLIO FUNCTIONS (No Change) ---
+  // --- STANDARD DEV-FOLIO FUNCTIONS (Kept as is) ---
   function toggleScrolled() {
     const selectBody = document.querySelector('body');
     const selectHeader = document.querySelector('#header');
@@ -80,38 +80,44 @@
   if (typeof PureCounter !== 'undefined') { new PureCounter(); }
 
   // --- CRITICAL GLIGHTBOX FIX & INITIALIZATION ---
-  
-  window.addEventListener('load', () => {
-    // 1. Initialise global Glightbox for video/image links
-    const globalGlightbox = GLightbox({
-      selector: '.glightbox'
-    });
 
-    // 2. Set up the custom handler for HTML page links (.details-link)
-    document.querySelectorAll('.details-link').forEach(link => {
-      link.addEventListener('click', function(e) {
-        // Only run the custom action if the link does NOT open a video/image
-        if (!this.classList.contains('glightbox')) {
-            e.preventDefault();
-            e.stopPropagation();
-            
-            const htmlPageUrl = this.getAttribute('href');
+  // Custom handler function to load external HTML into the modal
+  function loadHtmlInModal(e) {
+    e.preventDefault();
+    e.stopPropagation();
 
-            const instance = GLightbox({
-                selector: false, // Use instance mode
-                type: 'url',
-                width: '90vw',
-                height: '90vh',
-                elements: [{
-                    'href': htmlPageUrl,
-                    'type': 'url'
-                }]
-            });
-            instance.open();
-        }
-      });
+    const htmlPageUrl = this.getAttribute('href');
+
+    const instance = GLightbox({
+        selector: false, // Use instance mode
+        type: 'html', // Tell Glightbox to handle it as an HTML source
+        width: '90vw',
+        height: '90vh',
+        elements: [{
+            'content': `<iframe src="${htmlPageUrl}" style="width: 100%; height: 100%; border: none;"></iframe>`,
+            'type': 'html', // Explicitly define type for the element
+            'description': this.getAttribute('title')
+        }]
     });
+    instance.open();
+  }
+
+  // 1. Initiate global Glightbox for media (video/image) links
+  const globalGlightbox = GLightbox({
+    selector: '.glightbox'
   });
+
+  // 2. Attach the custom handler to all detail links that point to HTML files
+  document.querySelectorAll('.preview-link[href$=".html"]').forEach(link => {
+    link.addEventListener('click', loadHtmlInModal);
+  });
+  
+  // Also attach to the dedicated details-link chain icons if needed (optional based on your HTML)
+  document.querySelectorAll('.details-link[href$=".html"]').forEach(link => {
+      link.addEventListener('click', loadHtmlInModal);
+  });
+  
+  // --- END GLIGHTBOX FIX ---
 
 
   // --- ISOTOPE LAYOUT INITIALIZATION (Standard DevFolio) ---
@@ -136,9 +142,7 @@
       filters.addEventListener('click', function() {
         isotopeItem.querySelector('.isotope-filters .filter-active').classList.remove('filter-active');
         this.classList.add('filter-active');
-        if (initIsotope) {
-          initIsotope.arrange({ filter: this.getAttribute('data-filter') });
-        }
+        if (initIsotope) { initIsotope.arrange({ filter: this.getAttribute('data-filter') }); }
         if (typeof aosInit === 'function') { aosInit(); }
       }, false);
     });
@@ -152,11 +156,8 @@
   function initSwiper() {
     document.querySelectorAll(".init-swiper").forEach(function(swiperElement) {
       let config = JSON.parse(swiperElement.querySelector(".swiper-config").innerHTML.trim());
-      if (swiperElement.classList.contains("swiper-tab")) {
-        // initSwiperWithCustomPagination(swiperElement, config); // Custom function needed for tabs
-      } else {
-        new Swiper(swiperElement, config);
-      }
+      if (swiperElement.classList.contains("swiper-tab")) { /* Custom function needed for tabs */ } 
+      else { new Swiper(swiperElement, config); }
     });
   }
   window.addEventListener("load", initSwiper);
