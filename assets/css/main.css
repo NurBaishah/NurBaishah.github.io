@@ -2281,7 +2281,7 @@ body {
     color: black !important; /* CRITICAL: Ensure text is white for visibility */
     text-align: center !important;
     padding: 0 !important;
-    margin-bottom: 25px !important; /* Add space below text for icons */
+    margin-bottom: 1px !important; /* Add space below text for icons */
     position: relative; 
     z-index: 4; 
     line-height: 1.4; /* Improve readability */
