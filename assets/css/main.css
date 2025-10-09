@@ -2402,45 +2402,39 @@ body {
     flex-shrink: 0;
 }
 
-/* --- ANIMATION TRACKS --- */
+op) --- */
 
-/* --- ANIMATION TRACKS (Faster Speed) --- */
-
-/* --- ANIMATION TRACKS (Corrected Seamless Loop) --- */
-
-/* Track 1: Moves Left (default) */
+/* Track 1: Arts & Design (Moves Left) */
 .gallery-marquee-container.track-1 .moving-gallery-track {
-    /* Use a high negative margin to pull the duplicate set into view, 
-       which correctly compensates for the gap spacing */
-    margin-right: -3200px; 
-    animation: scrollGalleryLeft 30s linear infinite; 
+    animation: scrollGalleryLeft 40s linear infinite; /* Set to 40s duration */
 }
 
-/* Track 2: Moves Right (reversed) */
+/* Track 2: Daily Life (Moves Right) */
 .gallery-marquee-container.track-2 .moving-gallery-track {
-    /* Use a transform value that ensures the animation starts past the first copy */
-    transform: translateX(-50%); 
-    animation: scrollGalleryRight 30s linear infinite; 
+    animation: scrollGalleryRight 40s linear infinite; /* Set to 40s duration */
 }
 
 /* Define the continuous scrolling animation (Left) */
 @keyframes scrollGalleryLeft {
     0% {
-        transform: translateX(0); /* Start position */
+        /* Start position */
+        transform: translateX(0); 
     }
     100% {
-        /* CRITICAL FIX: The target must be the width of one full set of images PLUS all the gaps.
-           We'll use a large, calculated percentage to ensure the loop completes. */
-        transform: translateX(calc(-50% - 160px)); /* -50% of content + estimated gap width */
+        /* CRITICAL FIX: The target must be exactly the width of the original, non-duplicated set of images. */
+        /* We use -50% which is the target offset needed for the duplicated set. */
+        transform: translateX(-50%); 
     }
 }
 
 /* Define the continuous scrolling animation (Right) */
 @keyframes scrollGalleryRight {
     0% {
-        transform: translateX(calc(-50% - 160px)); /* Start at the calculated halfway point */
+        /* CRITICAL FIX: Start at the end of the first set (i.e., the start of the duplicate set) */
+        transform: translateX(-50%); 
     }
     100% {
-        transform: translateX(0); /* End at the start */
+        /* End position */
+        transform: translateX(0); 
     }
 }
