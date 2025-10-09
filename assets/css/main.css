@@ -2293,34 +2293,4 @@ body {
     justify-content: center !important; 
     align-items: flex-start !important; 
 }
-/* --- FINAL FIX: ALIGNING PORTFOLIO ICONS --- */
 
-.portfolio-item .portfolio-info .preview-link,
-.portfolio-item .portfolio-info .details-link {
-    /* Critical: Use absolute positioning for precise control */
-    position: absolute;
-    bottom: 20px; /* Position icons 20px from the bottom */
-    color: white !important; /* Ensure icons are white on hover */
-    z-index: 5; /* Ensure icons are above the blue overlay */
-    background: #000; /* Subtle dark background for visibility */
-    padding: 5px;
-    border-radius: 50%;
-    transition: all ease-in-out 0.3s;
-}
-
-/* 1. Position the PREVIEW (Video/Zoom) icon */
-.portfolio .portfolio-item .portfolio-info .preview-link {
-    right: 50px; /* Move the primary icon 50px from the right edge */
-}
-
-/* 2. Position the DETAILS (Chain) icon right next to it */
-.portfolio .portfolio-item .portfolio-info .details-link {
-    right: 10px; /* Position the chain icon closer to the right edge */
-}
-
-/* Ensure the icons look good when the info box is hovered */
-.portfolio-item:hover .portfolio-info .preview-link,
-.portfolio-item:hover .portfolio-info .details-link {
-    opacity: 1; /* Icons are fully visible */
-    transform: translateY(0); /* Remove any previous lifting effect */
-}
