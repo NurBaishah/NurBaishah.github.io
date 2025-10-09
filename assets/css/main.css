@@ -2331,3 +2331,82 @@ body {
     justify-content: center !important; 
     align-items: flex-start !important; 
 }
+/* --- Gallery Section Dual Moving Rows --- */
+
+.gallery-subtitle {
+    font-size: 1.5em;
+    font-weight: 700;
+    text-align: center;
+    margin: 40px 0 20px 0;
+    color: var(--heading-color);
+}
+
+.gallery-marquee-container {
+    overflow: hidden; 
+    white-space: nowrap;
+    padding: 20px 0;
+    margin: 10px auto;
+    background-color: #f8f8f8;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.moving-gallery-track {
+    display: flex; 
+    white-space: nowrap;
+    gap: 20px; 
+}
+
+.gallery-item {
+    width: 250px; 
+    height: 180px; 
+    object-fit: cover; 
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    flex-shrink: 0; 
+    transition: transform 0.3s;
+    border: 3px solid transparent;
+}
+
+/* Accent Colors for Visual Distinction */
+.art-accent { border-color: #9900ff; } /* Purple border for Arts */
+.life-accent { border-color: #00bf80; } /* Teal border for Daily Life */
+
+.gallery-item:hover {
+    transform: scale(1.05) translateY(-5px); /* Cool hover effect */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    z-index: 10;
+}
+
+.gallery-separator {
+    font-size: 3em;
+    color: var(--accent-color);
+    line-height: 180px; 
+    margin: 0 20px;
+    opacity: 0.5;
+    flex-shrink: 0;
+}
+
+/* --- ANIMATION TRACKS --- */
+
+/* Track 1: Moves Left (default) */
+.gallery-marquee-container.track-1 .moving-gallery-track {
+    animation: scrollGalleryLeft 60s linear infinite; /* Slower animation for long scroll */
+}
+
+/* Track 2: Moves Right (reversed) */
+.gallery-marquee-container.track-2 .moving-gallery-track {
+    animation: scrollGalleryRight 60s linear infinite;
+}
+
+/* Define the continuous scrolling animation (Left) */
+@keyframes scrollGalleryLeft {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); } 
+}
+
+/* Define the continuous scrolling animation (Right) */
+@keyframes scrollGalleryRight {
+    0% { transform: translateX(-50%); } /* Start at the halfway point */
+    100% { transform: translateX(0); } /* End at the start */
+}
