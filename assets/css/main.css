@@ -2407,18 +2407,18 @@ body {
 
 /* Track 1: Arts & Design (Moves Left) */
 .gallery-marquee-container.track-1 .moving-gallery-track {
-    animation: scrollGalleryLeft 40s linear infinite; /* 40s duration */
+    animation: scrollGalleryLeft 20s linear infinite; /* 40s duration */
 }
 
 /* Track 2: Daily Life (Moves Right) */
 .gallery-marquee-container.track-2 .moving-gallery-track {
-    animation: scrollGalleryRight 40s linear infinite; /* 40s duration */
+    animation: scrollGalleryRight 20s linear infinite; /* 40s duration */
 }
 
 /* Define the continuous scrolling animation (Left) */
 @keyframes scrollGalleryLeft {
     0% {
-        transform: translateX(0); /* Start position */
+        transform: translateX(50); /* Start position */
     }
     100% {
         /* CRITICAL FIX: The target must be exactly the width of the original set of images plus gaps. */
@@ -2432,6 +2432,6 @@ body {
         transform: translateX(-50%); /* Start at the halfway point */
     }
     100% {
-        transform: translateX(0); /* End position */
+        transform: translateX(50); /* End position */
     }
 }
