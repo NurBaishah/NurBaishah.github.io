@@ -2223,34 +2223,33 @@ body {
 }
 /* --- Final Functional Fix for Portfolio Visibility and Hover --- */
 
-/* 1. Ensure the page scrolls and content is not clipped (Override previous failures) */
+/* 1. Ensure the page scrolls and content is not clipped */
 #portfolio {
-    overflow: visible !important; /* CRITICAL: Allows content to overflow and forces scrolling */
-    padding-bottom: 80px !important; /* Ensure space below the bottom row */
+    overflow: visible !important; 
+    padding-bottom: 80px !important; 
     clear: both !important;
 }
 
-/* 2. Style for the Portfolio Item Container (Ensuring flex is off for natural image height) */
+/* 2. Portfolio Item Container Structure and Image Display */
 .portfolio .portfolio-item {
-    /* REMOVE display: flex and height: 100% to let content define height */
     position: relative; 
     z-index: 1;
-    overflow: hidden; /* Native DevFolio setting */
-    display: block; /* Revert to block display */
+    display: block; 
     height: auto !important; 
+    overflow: hidden; 
 }
 
 /* 3. Image Display: Let image be its natural size (NO FIXED HEIGHT) */
 .portfolio-item img {
-    height: auto !important; /* CRITICAL: Let image height be natural */
+    height: auto !important; 
     max-width: 100%;
     width: 100%;
+    object-fit: contain; 
     display: block;
-    object-fit: contain; /* Ensures the whole image is seen */
-    margin-bottom: 5px; /* Add small space below image */
+    margin-bottom: 5px; 
 }
 
-/* 4. The Hover Overlay (Icons) - RESTORING READABLE TEXT AND HOVER EFFECT */
+/* 4. The Hover Overlay (Icons and Blue Background) - Hidden by default */
 .portfolio-item .portfolio-info {
     /* Positions the hover overlay icons/text correctly */
     position: absolute;
@@ -2277,40 +2276,50 @@ body {
     opacity: 1; /* Overlay becomes visible */
 }
 
-/* 4. Ensure headings and paragraphs inside the visible block are BLACK */
+/* 6. Styling the text that is inside the hover overlay */
 .portfolio-item .portfolio-info h4, 
 .portfolio-item .portfolio-info p {
-    color: var(--heading-color, #0a090f) !important; /* Force Black Title/Text */
-    text-align: left !important;
+    color: white !important; /* Force text white on blue hover */
+    text-align: center !important;
     padding: 0 !important;
     margin-bottom: 5px !important;
+    position: relative; 
+    z-index: 4; 
 }
-/* --- ICON ALIGNMENT FIX --- */
+
+/* --- ICON ALIGNMENT AND VISIBILITY FIX (CRITICAL) --- */
+
 .portfolio-item .portfolio-info a {
-    /* Icon container is relative to the bottom right */
-    position: absolute;
-    bottom: 15px; 
-    color: white !important;
-    z-index: 5;
+    /* Ensures links are positioned relative to the hover container */
+    position: absolute !important;
+    z-index: 5 !important;
+    color: white !important; /* Icons are white */
+    background: transparent;
+    border-radius: 50%;
+    padding: 10px; /* Gives space around the icon */
+    font-size: 24px;
+    
+    /* Center the row of icons near the middle */
+    top: calc(50% - 22px); 
+    
+    /* Transition for subtle movement on hover */
     transition: all ease-in-out 0.3s;
 }
 
-.portfolio .portfolio-item .portfolio-info a i {
-    font-size: 24px;
-}
-
-/* Position the Video/Play icon first */
+/* 7. Position the VIDEO/PLAY icon (First Icon) */
 .portfolio .portfolio-item .portfolio-info .preview-link {
-    right: 50px; /* Position away from the edge */
+    right: 55px; /* Position further left to make space for the chain icon */
+    transform: translateY(0);
 }
 
-/* Position the Details/Chain icon next to it */
+/* 8. Position the DETAILS/CHAIN icon (Second Icon) */
 .portfolio .portfolio-item .portfolio-info .details-link {
     right: 15px; /* Position closer to the edge */
+    transform: translateY(0);
 }
 
 
-/* 7. Final Grid Centering Fix */
+/* 9. Final Grid Centering Fix */
 .isotope-container { 
     display: flex !important; 
     flex-wrap: wrap !important; 
