@@ -6,7 +6,7 @@
 (function() {
   "use strict";
 
-  // --- STANDARD DEV-FOLIO FUNCTIONS (Kept as is) ---
+  // --- STANDARD DEV-FOLIO FUNCTIONS ---
   function toggleScrolled() {
     const selectBody = document.querySelector('body');
     const selectHeader = document.querySelector('#header');
@@ -79,44 +79,42 @@
 
   if (typeof PureCounter !== 'undefined') { new PureCounter(); }
 
-// --- CRITICAL GLIGHTBOX FIX & INITIALIZATION ---
+  // --- CRITICAL GLIGHTBOX FIX & INITIALIZATION ---
 
-// 1. Initiate global Glightbox for media (video/image) links
-const globalGlightbox = GLightbox({
-  selector: '.glightbox'
-});
+  // 1. Initialise global Glightbox for media links
+  const globalGlightbox = GLightbox({
+    selector: '.glightbox'
+  });
 
-// 2. Attach the custom handler to all detail links that point to HTML files
-// We combine both preview and details links here for simplicity
-document.querySelectorAll('.preview-link, .details-link').forEach(link => {
-  // Check if the link points to an external HTML file (ends with .html)
-  if (link.getAttribute('href') && link.getAttribute('href').endsWith('.html')) {
+  // 2. Attach the custom handler to ALL links pointing to HTML files
+  document.querySelectorAll('.preview-link[href$=".html"], .details-link[href$=".html"]').forEach(link => {
     link.addEventListener('click', function(e) {
+      // Prevents default navigation
       e.preventDefault();
       e.stopPropagation();
       
       const htmlPageUrl = this.getAttribute('href');
+      const pageTitle = this.getAttribute('title');
 
-      const instance = GLightbox({
+      // Create a new, temporary Glightbox instance configured for HTML content (iframe)
+      const detailInstance = GLightbox({
           selector: false, // Use instance mode
-          type: 'html', // Tell Glightbox to render HTML via iframe
-          width: '90vw',
+          type: 'html', 
+          width: '90vw', 
           height: '90vh',
           elements: [{
+              // Load the HTML file into an iframe
               'content': `<iframe src="${htmlPageUrl}" style="width: 100%; height: 100%; border: none;"></iframe>`,
               'type': 'html',
-              'description': this.getAttribute('title')
+              'description': pageTitle // Use the link title for the description
           }]
       });
+      
       // Open the modal
-      instance.open();
+      detailInstance.open();
     });
-  }
-});
+  });
  
-// --- END GLIGHTBOX FIX ---
-
-
   // --- ISOTOPE LAYOUT INITIALIZATION (Standard DevFolio) ---
   document.querySelectorAll('.isotope-layout').forEach(function(isotopeItem) {
     let layout = isotopeItem.getAttribute('data-layout') ?? 'masonry';
