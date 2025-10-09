@@ -2418,7 +2418,7 @@ body {
 /* Define the continuous scrolling animation (Left) */
 @keyframes scrollGalleryLeft {
     0% {
-        transform: translateX(50); /* Start position */
+        transform: translateX(-50); /* Start position */
     }
     100% {
         /* CRITICAL FIX: The target must be exactly the width of the original set of images plus gaps. */
@@ -2432,6 +2432,6 @@ body {
         transform: translateX(50%); /* Start at the halfway point */
     }
     100% {
-        transform: translateX(50); /* End position */
+        transform: translateX(-50); /* End position */
     }
 }
