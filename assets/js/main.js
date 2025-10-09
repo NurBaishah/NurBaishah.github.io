@@ -78,43 +78,12 @@
   });
 
   if (typeof PureCounter !== 'undefined') { new PureCounter(); }
-
-  // --- CRITICAL GLIGHTBOX FIX & INITIALIZATION ---
-
-  // 1. Initialise global Glightbox for media links
-  const globalGlightbox = GLightbox({
-    selector: '.glightbox'
-  });
-
-  // 2. Attach the custom handler to ALL links pointing to HTML files
-  document.querySelectorAll('.preview-link[href$=".html"], .details-link[href$=".html"]').forEach(link => {
-    link.addEventListener('click', function(e) {
-      // Prevents default navigation
-      e.preventDefault();
-      e.stopPropagation();
-      
-      const htmlPageUrl = this.getAttribute('href');
-      const pageTitle = this.getAttribute('title');
-
-      // Create a new, temporary Glightbox instance configured for HTML content (iframe)
-      const detailInstance = GLightbox({
-          selector: false, // Use instance mode
-          type: 'html', 
-          width: '90vw', 
-          height: '90vh',
-          elements: [{
-              // Load the HTML file into an iframe
-              'content': `<iframe src="${htmlPageUrl}" style="width: 100%; height: 100%; border: none;"></iframe>`,
-              'type': 'html',
-              'description': pageTitle // Use the link title for the description
-          }]
-      });
-      
-      // Open the modal
-      detailInstance.open();
-    });
-  });
- 
+ /**
+   * Initiate glightbox
+   */
+  const glightbox = GLightbox({
+    selector: '.glightbox'
+  });
   // --- ISOTOPE LAYOUT INITIALIZATION (Standard DevFolio) ---
   document.querySelectorAll('.isotope-layout').forEach(function(isotopeItem) {
     let layout = isotopeItem.getAttribute('data-layout') ?? 'masonry';
