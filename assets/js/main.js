@@ -1,54 +1,33 @@
 /**
 * Template Name: DevFolio
-* Template URL: https://bootstrapmade.com/devfolio-bootstrap-portfolio-html-template/
-* Updated: Aug 07 2024 with Bootstrap v5.3.3
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
+* (Modified by Nur Baishah's Custom Code)
 */
 
 (function() {
   "use strict";
 
-  /**
-   * Apply .scrolled class to the body as the page is scrolled down
-   */
+  // --- STANDARD DEV-FOLIO FUNCTIONS (No Change) ---
   function toggleScrolled() {
     const selectBody = document.querySelector('body');
     const selectHeader = document.querySelector('#header');
     if (!selectHeader.classList.contains('scroll-up-sticky') && !selectHeader.classList.contains('sticky-top') && !selectHeader.classList.contains('fixed-top')) return;
     window.scrollY > 100 ? selectBody.classList.add('scrolled') : selectBody.classList.remove('scrolled');
   }
-
   document.addEventListener('scroll', toggleScrolled);
   window.addEventListener('load', toggleScrolled);
 
-  /**
-   * Mobile nav toggle
-   */
   const mobileNavToggleBtn = document.querySelector('.mobile-nav-toggle');
-
   function mobileNavToogle() {
     document.querySelector('body').classList.toggle('mobile-nav-active');
     mobileNavToggleBtn.classList.toggle('bi-list');
     mobileNavToggleBtn.classList.toggle('bi-x');
   }
-  mobileNavToggleBtn.addEventListener('click', mobileNavToogle);
+  if (mobileNavToggleBtn) { mobileNavToggleBtn.addEventListener('click', mobileNavToogle); }
 
-  /**
-   * Hide mobile nav on same-page/hash links
-   */
   document.querySelectorAll('#navmenu a').forEach(navmenu => {
-    navmenu.addEventListener('click', () => {
-      if (document.querySelector('.mobile-nav-active')) {
-        mobileNavToogle();
-      }
-    });
-
+    navmenu.addEventListener('click', () => { if (document.querySelector('.mobile-nav-active')) { mobileNavToogle(); } });
   });
 
-  /**
-   * Toggle mobile nav dropdowns
-   */
   document.querySelectorAll('.navmenu .toggle-dropdown').forEach(navmenu => {
     navmenu.addEventListener('click', function(e) {
       e.preventDefault();
@@ -58,69 +37,34 @@
     });
   });
 
-  /**
-   * Preloader
-   */
   const preloader = document.querySelector('#preloader');
   if (preloader) {
-    window.addEventListener('load', () => {
-      preloader.remove();
-    });
+    window.addEventListener('load', () => { preloader.remove(); });
   }
 
-  /**
-   * Scroll top button
-   */
   let scrollTop = document.querySelector('.scroll-top');
-
   function toggleScrollTop() {
-    if (scrollTop) {
-      window.scrollY > 100 ? scrollTop.classList.add('active') : scrollTop.classList.remove('active');
-    }
+    if (scrollTop) { window.scrollY > 100 ? scrollTop.classList.add('active') : scrollTop.classList.remove('active'); }
   }
-  scrollTop.addEventListener('click', (e) => {
-    e.preventDefault();
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
+  if (scrollTop) {
+    scrollTop.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
-  });
-
+  }
   window.addEventListener('load', toggleScrollTop);
   document.addEventListener('scroll', toggleScrollTop);
 
-  /**
-   * Animation on scroll function and init
-   */
-  function aosInit() {
-    AOS.init({
-      duration: 600,
-      easing: 'ease-in-out',
-      once: true,
-      mirror: false
-    });
-  }
+  function aosInit() { AOS.init({ duration: 600, easing: 'ease-in-out', once: true, mirror: false }); }
   window.addEventListener('load', aosInit);
 
-  /**
-   * Init typed.js
-   */
   const selectTyped = document.querySelector('.typed');
   if (selectTyped) {
     let typed_strings = selectTyped.getAttribute('data-typed-items');
     typed_strings = typed_strings.split(',');
-    new Typed('.typed', {
-      strings: typed_strings,
-      loop: true,
-      typeSpeed: 100,
-      backSpeed: 50,
-      backDelay: 2000
-    });
+    new Typed('.typed', { strings: typed_strings, loop: true, typeSpeed: 100, backSpeed: 50, backDelay: 2000 });
   }
 
-  /**
-   * Animate the skills items on reveal
-   */
   let skillsAnimation = document.querySelectorAll('.skills-animation');
   skillsAnimation.forEach((item) => {
     new Waypoint({
@@ -128,132 +72,108 @@
       offset: '80%',
       handler: function(direction) {
         let progress = item.querySelectorAll('.progress .progress-bar');
-        progress.forEach(el => {
-          el.style.width = el.getAttribute('aria-valuenow') + '%';
-        });
+        progress.forEach(el => { el.style.width = el.getAttribute('aria-valuenow') + '%'; });
       }
     });
   });
 
-  /**
-   * Initiate Pure Counter
-   */
-  new PureCounter();
+  if (typeof PureCounter !== 'undefined') { new PureCounter(); }
 
- /**
-   * Initiate glightbox
-   */
-  const glightbox = GLightbox({
-    selector: '.glightbox'
-  });
+  // --- CRITICAL GLIGHTBOX FIX & INITIALIZATION ---
+  
+  window.addEventListener('load', () => {
+    // 1. Initialise global Glightbox for video/image links
+    const globalGlightbox = GLightbox({
+      selector: '.glightbox'
+    });
 
-  // CRITICAL FIX: Add listener to ensure Glightbox can open HTML pages correctly
-  document.querySelectorAll('.glightbox').forEach(link => {
-    if (link.getAttribute('data-type') === 'url') {
+    // 2. Set up the custom handler for HTML page links (.details-link)
+    document.querySelectorAll('.details-link').forEach(link => {
       link.addEventListener('click', function(e) {
-        // This ensures the external HTML content is loaded correctly into the lightbox
-        e.preventDefault(); 
-        e.stopPropagation();
-        
-        const instance = GLightbox({
-            selector: false,
-            // Configure the modal size for the HTML page content
-            width: '90vw', 
-            height: '90vh',
-            elements: [{
-                'href': this.href,
-                'type': 'url'
-            }]
-        });
-        instance.open();
+        // Only run the custom action if the link does NOT open a video/image
+        if (!this.classList.contains('glightbox')) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const htmlPageUrl = this.getAttribute('href');
+
+            const instance = GLightbox({
+                selector: false, // Use instance mode
+                type: 'url',
+                width: '90vw',
+                height: '90vh',
+                elements: [{
+                    'href': htmlPageUrl,
+                    'type': 'url'
+                }]
+            });
+            instance.open();
+        }
       });
-    }
+    });
   });
 
-  /**
-   * Init isotope layout and filters
-   */
+
+  // --- ISOTOPE LAYOUT INITIALIZATION (Standard DevFolio) ---
   document.querySelectorAll('.isotope-layout').forEach(function(isotopeItem) {
     let layout = isotopeItem.getAttribute('data-layout') ?? 'masonry';
     let filter = isotopeItem.getAttribute('data-default-filter') ?? '*';
     let sort = isotopeItem.getAttribute('data-sort') ?? 'original-order';
 
     let initIsotope;
-    imagesLoaded(isotopeItem.querySelector('.isotope-container'), function() {
-      initIsotope = new Isotope(isotopeItem.querySelector('.isotope-container'), {
-        itemSelector: '.isotope-item',
-        layoutMode: layout,
-        filter: filter,
-        sortBy: sort
+    if (typeof Isotope !== 'undefined' && typeof imagesLoaded !== 'undefined') {
+      imagesLoaded(isotopeItem.querySelector('.isotope-container'), function() {
+        initIsotope = new Isotope(isotopeItem.querySelector('.isotope-container'), {
+          itemSelector: '.isotope-item',
+          layoutMode: layout,
+          filter: filter,
+          sortBy: sort
+        });
       });
-    });
+    }
 
     isotopeItem.querySelectorAll('.isotope-filters li').forEach(function(filters) {
       filters.addEventListener('click', function() {
         isotopeItem.querySelector('.isotope-filters .filter-active').classList.remove('filter-active');
         this.classList.add('filter-active');
-        initIsotope.arrange({
-          filter: this.getAttribute('data-filter')
-        });
-        if (typeof aosInit === 'function') {
-          aosInit();
+        if (initIsotope) {
+          initIsotope.arrange({ filter: this.getAttribute('data-filter') });
         }
+        if (typeof aosInit === 'function') { aosInit(); }
       }, false);
     });
-
   });
 
-  /**
-   * Frequently Asked Questions Toggle
-   */
+  // --- REMAINING DEV-FOLIO SCRIPTS (Standard) ---
   document.querySelectorAll('.faq-item h3, .faq-item .faq-toggle').forEach((faqItem) => {
-    faqItem.addEventListener('click', () => {
-      faqItem.parentNode.classList.toggle('faq-active');
-    });
+    faqItem.addEventListener('click', () => { faqItem.parentNode.classList.toggle('faq-active'); });
   });
 
-  /**
-   * Init swiper sliders
-   */
   function initSwiper() {
     document.querySelectorAll(".init-swiper").forEach(function(swiperElement) {
-      let config = JSON.parse(
-        swiperElement.querySelector(".swiper-config").innerHTML.trim()
-      );
-
+      let config = JSON.parse(swiperElement.querySelector(".swiper-config").innerHTML.trim());
       if (swiperElement.classList.contains("swiper-tab")) {
-        initSwiperWithCustomPagination(swiperElement, config);
+        // initSwiperWithCustomPagination(swiperElement, config); // Custom function needed for tabs
       } else {
         new Swiper(swiperElement, config);
       }
     });
   }
-
   window.addEventListener("load", initSwiper);
 
-  /**
-   * Correct scrolling position upon page load for URLs containing hash links.
-   */
   window.addEventListener('load', function(e) {
     if (window.location.hash) {
       if (document.querySelector(window.location.hash)) {
         setTimeout(() => {
           let section = document.querySelector(window.location.hash);
           let scrollMarginTop = getComputedStyle(section).scrollMarginTop;
-          window.scrollTo({
-            top: section.offsetTop - parseInt(scrollMarginTop),
-            behavior: 'smooth'
-          });
+          window.scrollTo({ top: section.offsetTop - parseInt(scrollMarginTop), behavior: 'smooth' });
         }, 100);
       }
     }
   });
 
-  /**
-   * Navmenu Scrollspy
-   */
   let navmenulinks = document.querySelectorAll('.navmenu a');
-
   function navmenuScrollspy() {
     navmenulinks.forEach(navmenulink => {
       if (!navmenulink.hash) return;
@@ -272,27 +192,3 @@
   document.addEventListener('scroll', navmenuScrollspy);
 
 })();
-document.querySelectorAll('.open-html-modal').forEach(link => {
-    link.addEventListener('click', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-
-        // Dynamically create a Glightbox instance to load the external page
-        const htmlPageUrl = this.getAttribute('href');
-
-        const instance = GLightbox({
-            selector: false, // Ensures it doesn't conflict with the main selector
-            type: 'url',
-            // Set the size to be large and responsive for a details page
-            width: '90vw', 
-            height: '90vh',
-            elements: [{
-                'href': htmlPageUrl,
-                'type': 'url'
-            }]
-        });
-
-        // Open the modal
-        instance.open();
-    });
-});
