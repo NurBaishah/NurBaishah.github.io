@@ -2281,7 +2281,7 @@ body {
     color: black !important; /* CRITICAL: Ensure text is white for visibility */
     text-align: center !important;
     padding: 0 !important;
-    margin-bottom: 10px !important; /* Add space below text for icons */
+    margin-bottom: 25px !important; /* Add space below text for icons */
     position: relative; 
     z-index: 4; 
     line-height: 1.4; /* Improve readability */
@@ -2309,11 +2309,11 @@ body {
     background: rgba(255, 255, 255, 0.2); /* Subtle background for contrast */
     border-radius: 50%;
     padding: 8px; /* Padding inside the circle */
-    font-size: 18px; /* Slightly smaller icons */
+    font-size: 10px; /* Slightly smaller icons */
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 40px; /* Fixed size for circular icons */
+    width: 35px; /* Fixed size for circular icons */
     height: 40px;
     margin: 0 5px; /* Space between icons */
     transition: all ease-in-out 0.3s;
