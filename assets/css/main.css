@@ -2249,75 +2249,80 @@ body {
     margin-bottom: 5px; 
 }
 
-/* 4. The Hover Overlay (Icons and Blue Background) - Hidden by default */
+/* 4. The Hover Overlay (Dark Blue Background) - Hidden by default */
 .portfolio-item .portfolio-info {
-    /* Positions the hover overlay icons/text correctly */
     position: absolute;
     left: 0;
     right: 0;
     top: 0;
     bottom: 0;
     z-index: 3;
-    opacity: 0; /* CRITICAL: Starts invisible */
+    opacity: 0; /* Starts invisible */
     transition: all ease-in-out 0.3s;
-    background: rgba(0, 120, 255, 0.8); /* Blue overlay */
+    background: rgba(14, 25, 45, 0.9); /* Dark Blue overlay, slightly transparent */
     padding: 15px; 
     
-    /* Center icons and title within the hover area */
+    /* Use flexbox to center content */
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: center; /* Vertically center content */
+    align-items: center; /* Horizontally center content */
     text-align: center;
 }
 
-/* 5. HOVER ACTION: Makes the blue overlay appear */
+/* 5. HOVER ACTION: Makes the dark blue overlay appear */
 .portfolio-item:hover .portfolio-info {
     opacity: 1; /* Overlay becomes visible */
 }
 
-/* 6. Styling the text that is inside the hover overlay */
+/* 6. Text Styling: White text on dark blue overlay */
 .portfolio-item .portfolio-info h4, 
 .portfolio-item .portfolio-info p {
-    color: white !important; /* Force text white on blue hover */
+    color: white !important; /* CRITICAL: Ensure text is white for visibility */
     text-align: center !important;
     padding: 0 !important;
-    margin-bottom: 5px !important;
+    margin-bottom: 10px !important; /* Add space below text for icons */
     position: relative; 
     z-index: 4; 
+    line-height: 1.4; /* Improve readability */
 }
 
 /* --- ICON ALIGNMENT AND VISIBILITY FIX (CRITICAL) --- */
 
+/* Container for the icons to manage their horizontal alignment */
+.portfolio-item .portfolio-info .icon-row {
+    position: absolute; /* Position icon row at the bottom */
+    bottom: 20px;
+    display: flex; /* CRITICAL: Use flexbox for horizontal alignment */
+    justify-content: center; /* Center the icons within the row */
+    align-items: center;
+    width: 100%; /* Ensure the row spans the width for centering */
+}
+
+/* Individual icon styling */
 .portfolio-item .portfolio-info a {
-    /* Ensures links are positioned relative to the hover container */
-    position: absolute !important;
+    position: relative !important; /* Make icons relative to their .icon-row parent */
+    right: auto !important; /* Override any absolute 'right' from DevFolio */
+    bottom: auto !important; /* Override any absolute 'bottom' from DevFolio */
     z-index: 5 !important;
-    color: white !important; /* Icons are white */
-    background: transparent;
+    color: white !important; 
+    background: rgba(255, 255, 255, 0.2); /* Subtle background for contrast */
     border-radius: 50%;
-    padding: 10px; /* Gives space around the icon */
-    font-size: 24px;
-    
-    /* Center the row of icons near the middle */
-    top: calc(50% - 22px); 
-    
-    /* Transition for subtle movement on hover */
+    padding: 8px; /* Padding inside the circle */
+    font-size: 18px; /* Slightly smaller icons */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px; /* Fixed size for circular icons */
+    height: 40px;
+    margin: 0 5px; /* Space between icons */
     transition: all ease-in-out 0.3s;
 }
 
-/* 7. Position the VIDEO/PLAY icon (First Icon) */
-.portfolio .portfolio-item .portfolio-info .preview-link {
-    right: 55px; /* Position further left to make space for the chain icon */
-    transform: translateY(0);
+.portfolio-item .portfolio-info a:hover {
+    background: rgba(255, 255, 255, 0.4); /* Lighter background on hover */
+    transform: translateY(-3px); /* Subtle lift effect */
 }
-
-/* 8. Position the DETAILS/CHAIN icon (Second Icon) */
-.portfolio .portfolio-item .portfolio-info .details-link {
-    right: 15px; /* Position closer to the edge */
-    transform: translateY(0);
-}
-
 
 /* 9. Final Grid Centering Fix */
 .isotope-container { 
