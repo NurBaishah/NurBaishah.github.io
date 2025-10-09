@@ -79,45 +79,42 @@
 
   if (typeof PureCounter !== 'undefined') { new PureCounter(); }
 
-  // --- CRITICAL GLIGHTBOX FIX & INITIALIZATION ---
+// --- CRITICAL GLIGHTBOX FIX & INITIALIZATION ---
 
-  // Custom handler function to load external HTML into the modal
-  function loadHtmlInModal(e) {
-    e.preventDefault();
-    e.stopPropagation();
+// 1. Initiate global Glightbox for media (video/image) links
+const globalGlightbox = GLightbox({
+  selector: '.glightbox'
+});
 
-    const htmlPageUrl = this.getAttribute('href');
+// 2. Attach the custom handler to all detail links that point to HTML files
+// We combine both preview and details links here for simplicity
+document.querySelectorAll('.preview-link, .details-link').forEach(link => {
+  // Check if the link points to an external HTML file (ends with .html)
+  if (link.getAttribute('href') && link.getAttribute('href').endsWith('.html')) {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      const htmlPageUrl = this.getAttribute('href');
 
-    const instance = GLightbox({
-        selector: false, // Use instance mode
-        type: 'html', // Tell Glightbox to handle it as an HTML source
-        width: '90vw',
-        height: '90vh',
-        elements: [{
-            'content': `<iframe src="${htmlPageUrl}" style="width: 100%; height: 100%; border: none;"></iframe>`,
-            'type': 'html', // Explicitly define type for the element
-            'description': this.getAttribute('title')
-        }]
+      const instance = GLightbox({
+          selector: false, // Use instance mode
+          type: 'html', // Tell Glightbox to render HTML via iframe
+          width: '90vw',
+          height: '90vh',
+          elements: [{
+              'content': `<iframe src="${htmlPageUrl}" style="width: 100%; height: 100%; border: none;"></iframe>`,
+              'type': 'html',
+              'description': this.getAttribute('title')
+          }]
+      });
+      // Open the modal
+      instance.open();
     });
-    instance.open();
   }
-
-  // 1. Initiate global Glightbox for media (video/image) links
-  const globalGlightbox = GLightbox({
-    selector: '.glightbox'
-  });
-
-  // 2. Attach the custom handler to all detail links that point to HTML files
-  document.querySelectorAll('.preview-link[href$=".html"]').forEach(link => {
-    link.addEventListener('click', loadHtmlInModal);
-  });
-  
-  // Also attach to the dedicated details-link chain icons if needed (optional based on your HTML)
-  document.querySelectorAll('.details-link[href$=".html"]').forEach(link => {
-      link.addEventListener('click', loadHtmlInModal);
-  });
-  
-  // --- END GLIGHTBOX FIX ---
+});
+ 
+// --- END GLIGHTBOX FIX ---
 
 
   // --- ISOTOPE LAYOUT INITIALIZATION (Standard DevFolio) ---
