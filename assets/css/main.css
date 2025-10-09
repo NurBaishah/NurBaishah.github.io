@@ -2408,12 +2408,12 @@ body {
 
 /* Track 1: Moves Left (default) */
 .gallery-marquee-container.track-1 .moving-gallery-track {
-    animation: scrollGalleryLeft 30s linear infinite; /* CHANGED from 60s to 30s */
+    animation: scrollGalleryLeft 15s linear infinite; /* CHANGED from 60s to 30s */
 }
 
 /* Track 2: Moves Right (reversed) */
 .gallery-marquee-container.track-2 .moving-gallery-track {
-    animation: scrollGalleryRight 30s linear infinite; /* CHANGED from 60s to 30s */
+    animation: scrollGalleryRight 15s linear infinite; /* CHANGED from 60s to 30s */
 }
 
 /* Define the continuous scrolling animation (Left) */
