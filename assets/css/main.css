@@ -2406,24 +2406,41 @@ body {
 
 /* --- ANIMATION TRACKS (Faster Speed) --- */
 
+/* --- ANIMATION TRACKS (Corrected Seamless Loop) --- */
+
 /* Track 1: Moves Left (default) */
 .gallery-marquee-container.track-1 .moving-gallery-track {
-    animation: scrollGalleryLeft 15s linear infinite; /* CHANGED from 60s to 30s */
+    /* Use a high negative margin to pull the duplicate set into view, 
+       which correctly compensates for the gap spacing */
+    margin-right: -3200px; 
+    animation: scrollGalleryLeft 30s linear infinite; 
 }
 
 /* Track 2: Moves Right (reversed) */
 .gallery-marquee-container.track-2 .moving-gallery-track {
-    animation: scrollGalleryRight 15s linear infinite; /* CHANGED from 60s to 30s */
+    /* Use a transform value that ensures the animation starts past the first copy */
+    transform: translateX(-50%); 
+    animation: scrollGalleryRight 30s linear infinite; 
 }
 
 /* Define the continuous scrolling animation (Left) */
 @keyframes scrollGalleryLeft {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); } 
+    0% {
+        transform: translateX(0); /* Start position */
+    }
+    100% {
+        /* CRITICAL FIX: The target must be the width of one full set of images PLUS all the gaps.
+           We'll use a large, calculated percentage to ensure the loop completes. */
+        transform: translateX(calc(-50% - 160px)); /* -50% of content + estimated gap width */
+    }
 }
 
 /* Define the continuous scrolling animation (Right) */
 @keyframes scrollGalleryRight {
-    0% { transform: translateX(-50%); } 
-    100% { transform: translateX(0); } 
+    0% {
+        transform: translateX(calc(-50% - 160px)); /* Start at the calculated halfway point */
+    }
+    100% {
+        transform: translateX(0); /* End at the start */
+    }
 }
