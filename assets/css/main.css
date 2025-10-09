@@ -2404,25 +2404,25 @@ body {
 
 op) --- */
 
+/* --- ANIMATION TRACKS (Uniform Speed for Seamless Loop) --- */
+
 /* Track 1: Arts & Design (Moves Left) */
 .gallery-marquee-container.track-1 .moving-gallery-track {
-    animation: scrollGalleryLeft 40s linear infinite; /* Set to 40s duration */
+    animation: scrollGalleryLeft 40s linear infinite; /* 40s duration */
 }
 
 /* Track 2: Daily Life (Moves Right) */
 .gallery-marquee-container.track-2 .moving-gallery-track {
-    animation: scrollGalleryRight 40s linear infinite; /* Set to 40s duration */
+    animation: scrollGalleryRight 40s linear infinite; /* 40s duration */
 }
 
 /* Define the continuous scrolling animation (Left) */
 @keyframes scrollGalleryLeft {
     0% {
-        /* Start position */
-        transform: translateX(0); 
+        transform: translateX(0); /* Start position */
     }
     100% {
-        /* CRITICAL FIX: The target must be exactly the width of the original, non-duplicated set of images. */
-        /* We use -50% which is the target offset needed for the duplicated set. */
+        /* CRITICAL FIX: The target must be exactly the width of the original set of images plus gaps. */
         transform: translateX(-50%); 
     }
 }
@@ -2430,11 +2430,9 @@ op) --- */
 /* Define the continuous scrolling animation (Right) */
 @keyframes scrollGalleryRight {
     0% {
-        /* CRITICAL FIX: Start at the end of the first set (i.e., the start of the duplicate set) */
-        transform: translateX(-50%); 
+        transform: translateX(-50%); /* Start at the halfway point */
     }
     100% {
-        /* End position */
-        transform: translateX(0); 
+        transform: translateX(0); /* End position */
     }
 }
