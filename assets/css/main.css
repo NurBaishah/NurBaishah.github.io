@@ -2341,20 +2341,35 @@ body {
     color: var(--heading-color);
 }
 
+/* --- Final Gallery Container Styling: Blue Gradient to Match About Sections --- */
+
 .gallery-marquee-container {
     overflow: hidden; 
     white-space: nowrap;
     padding: 20px 0;
-    margin: 10px auto;
-    background-color: #f8f8f8;
+    margin: 15px auto; /* Add vertical margin for separation */
+    
+    /* CRITICAL FIX: APPLY BLUE GRADIENT */
+    background: linear-gradient(to bottom right, #f4f8ff, #e9efff) !important;
+    
+    /* Remove white background, old borders, and subtle shadow */
+    border-top: none;
+    border-bottom: none;
+    box-shadow: 0 5px 15px rgba(0, 0, 100, 0.1); /* Keep a subtle shadow */
     border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    
+    /* Adjust internal padding for a cleaner look */
+    padding-left: 20px; 
+    padding-right: 20px;
 }
 
+/* Ensure the main animation track doesn't conflict */
 .moving-gallery-track {
-    display: flex; 
+    display: flex;
     white-space: nowrap;
-    gap: 20px; 
+    gap: 20px;
+    /* Make sure the track background is transparent */
+    background: transparent; 
 }
 
 .gallery-item {
