@@ -2285,14 +2285,35 @@ body {
     padding: 0 !important;
     margin-bottom: 5px !important;
 }
-
-/* 7. Final Centering Fix for the grid (Keep this for organization) */
-.isotope-container { 
-    display: flex !important; 
-    flex-wrap: wrap !important; 
-    justify-content: center !important; 
-    align-items: flex-start !important; 
+/* --- ICON ALIGNMENT FIX --- */
+.portfolio-item .portfolio-info a {
+    /* Icon container is relative to the bottom right */
+    position: absolute;
+    bottom: 15px; 
+    color: white !important;
+    z-index: 5;
+    transition: all ease-in-out 0.3s;
 }
 
+.portfolio .portfolio-item .portfolio-info a i {
+    font-size: 24px;
+}
+
+/* Position the Video/Play icon first */
+.portfolio .portfolio-item .portfolio-info .preview-link {
+    right: 50px; /* Position away from the edge */
+}
+
+/* Position the Details/Chain icon next to it */
 .portfolio .portfolio-item .portfolio-info .details-link {
-    right: 0px !important;
+    right: 15px; /* Position closer to the edge */
+}
+
+
+/* 7. Final Grid Centering Fix */
+.isotope-container { 
+    display: flex !important; 
+    flex-wrap: wrap !important; 
+    justify-content: center !important; 
+    align-items: flex-start !important; 
+}
