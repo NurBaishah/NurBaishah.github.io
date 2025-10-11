@@ -71,7 +71,7 @@
 --------------------------------------------------------------*/
 body {
     /* Linear gradient from white to light gray */
-    background: linear-gradient(180deg, #ffffff 0%, #f0f0f0 100%);
+    background: #f7f7f7 !important;
     /* Optional: make sure it fills the full page */
     min-height: 100vh;
     margin: 0;
